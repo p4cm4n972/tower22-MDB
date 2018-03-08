@@ -13,7 +13,7 @@
     <div class="row">
 
       <!--First column-->
-      <div class="col-lg-3 col-md-12 mb-r">
+      <div class="col-lg-2 col-md-12 mb-r">
 
         <!--Pricing card-->
         <div class="card pricing-card" (click)="add('enfant')">
@@ -62,7 +62,7 @@
       <!--/First column-->
 
       <!--Second column-->
-      <div class="col-lg-3 col-md-6 mb-r">
+      <div class="col-lg-2 col-md-6 mb-r">
 
         <!--Pricing card-->
         <div class="card pricing-card" (click)="add('adulte')">
@@ -111,7 +111,7 @@
       <!--/Second column-->
 
       <!--Third column-->
-      <div class="col-lg-3 col-md-6 mb-r">
+      <div class="col-lg-2 col-md-6 mb-r">
         <!--Pricing card-->
         <div class="card pricing-card" (click)="add('groupe')">
           <!--Price-->
@@ -157,12 +157,12 @@
       </div>
       <!--/Third column-->
       <!--abo ROW-->
-      <div class="col-lg-3 col-md-12 mb-r">
+      <div class="col-lg-6 col-md-12 mb-r">
         <!--Pricing card-->
         <div class="card pricing-card white-text">
           <!--Price-->
           <div class="header elegant-color">
-            <h4>VOTRE PANIER <div class="chip green" *ngIf="abo !== 0">{{abo}}</div></h4>
+            <h4>VOTRE PANIER <div class="chip green" *ngIf="abo !== 0" style="width:50px; font-size:2rem">{{abo}}</div></h4>
             <div class="chip yellow font-weight-bold mx-auto" *ngIf="total !== 0"><h2>{{total}},00 €</h2></div>
           </div>
           <!--Price-->
@@ -175,15 +175,21 @@
               <li *ngIf="abos[0].qty !== 0">
                 <p class="mt-1" >
                   Abonnement(s): {{abos[0].name}}</p>
-                  <div class="chip red w-25" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></div><div class="chip indigo w-25"><p class="w-100 font-weight-bold" >{{abos[0].qty}}</p></div><div class="chip green w-25" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></div>
+                  <div class="chip red lighten-1 w-25" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></div>
+                  <div class="chip indigo w-10"><p class=" font-weight-bold" >{{abos[0].qty}}</p></div>
+                  <div class="chip green w-25" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></div>
               </li>
               <li *ngIf="abos[1].qty !== 0">
                   <p class="mt-1" >Abonnement(s): {{abos[1].name}}</p>
-                  <div class="chip red w-25" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></div><div class="chip blue w-25"><p class="w-100 font-weight-bold" >{{abos[1].qty}}</p></div><div class="chip green w-25" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></div>
+                  <div class="chip red lighten-1 w-25" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></div>
+                  <div class="chip blue w-10"><p class="font-weight-bold" >{{abos[1].qty}}</p></div>
+                  <div class="chip green w-25" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></div>
               </li>
               <li *ngIf="abos[2].qty !== 0">
                   <p class="mt-1" >Abonnement(s): {{abos[2].name}}</p>
-                  <div class="chip red w-25" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></div><div class="chip deep-purple w-25"><p class="w-100 font-weight-bold" >{{abos[2].qty}}</p></div><div class="chip green w-25" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></div>
+                  <div class="chip red lighten-1 w-25" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></div>
+                  <div class="chip deep-purple w-10"><p class="font-weight-bold" >{{abos[2].qty}}</p></div>
+                  <div class="chip green w-25" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></div>
               </li>
             </ul>
 
@@ -198,10 +204,10 @@
     <!--/First row-->
     <!--MODALS VALIDATION PANIER-->
     <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notify modal-info" role="document">
+        <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="heading lead mx-auto">Valider votre panier</h1>
+                    <h1 class="heading lead mx-auto">VALIDER VOTRE PANIER</h1>
                     
                 </div>
                 <div class="modal-body">
@@ -220,7 +226,7 @@
     </div>
     <!--MODALS INSTRUCTIONS TERMINAL DE PAIEMENT-->
     <div mdbModal #CB="mdb-modal" [config]="{ ignoreBackdropClick: true }" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notify modal-info" role="document">
+        <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="heading lead mx-auto">PAIEMENT CB</h1>
@@ -237,7 +243,7 @@
     </div>
     <!--MODALS DISPENSER-->
     <div mdbModal #dispenser="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-notify modal-info" role="document">
+      <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <h1 class="heading lead mx-auto">CARTE D'ABONNEMENT</h1>
@@ -254,7 +260,7 @@
   </div>
   <!--BACK ANNULATION-->
   <div mdbModal #back="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-notify modal-info" role="document">
+    <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="heading lead mx-auto">RETOUR AU MENU</h1>
