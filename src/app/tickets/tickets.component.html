@@ -4,8 +4,8 @@
 
     <!--Section heading-->
     <h1 class="section-heading h1 pt-4 orange-text">
-      <button class="btn blue btn-rounded waves-light" mdbRippleRadius (click)='onBack()'>
-        <i class="fa fa-chevron-circle-left" aria-hidden="true">retour</i>
+      <button class="btn blue btn-rounded waves-light menu" mdbRippleRadius (click)='onBack()'>
+        <i class="fa fa-chevron-circle-left" aria-hidden="true"> MENU</i>
       </button>Choisir son ticket</h1>
     <!--Section description-->
     <p class="section-description"></p>
@@ -156,9 +156,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="heading lead mx-auto">Valider votre panier</h1>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
-                        <span aria-hidden="true" class="white-text">×</span>
-                    </button>
+                    
                 </div>
                 <div class="modal-body">
                     <div class="text-center">
@@ -175,7 +173,7 @@
         </div>
     </div>
     <!--MODALS INSTRUCTIONS TERMINAL DE PAIEMENT-->
-    <div mdbModal #CB="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div mdbModal #CB="mdb-modal" [config]="{ ignoreBackdropClick: true }" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-notify modal-info" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -214,9 +212,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="heading lead mx-auto">RETOUR AU MENU</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
-                    <span aria-hidden="true" class="white-text">×</span>
-                </button>
+                
             </div>
             <div class="modal-body">
                 <div class="text-center">

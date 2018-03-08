@@ -3,8 +3,8 @@
   <section class="section pb-3">
     <!--Section heading-->
     <h1 class="section-heading h1 blue-text">
-      <button class="btn blue btn-rounded waves-light" mdbRippleRadius (click)='onBack()'>
-        <i class="fa fa-5x fa-chevron-circle-left" aria-hidden="true">RETOUR</i>
+      <button class="btn blue btn-rounded waves-light menu" mdbRippleRadius (click)='onBack()'>
+        <i class="fa fa-5x fa-chevron-circle-left" aria-hidden="true"> MENU</i>
       </button>Choisir son abonnement</h1>
     <!--Section description-->
     <p class="section-description"></p>
@@ -175,15 +175,15 @@
               <li *ngIf="abos[0].qty !== 0">
                 <p class="mt-1" >
                   Abonnement(s): {{abos[0].name}}</p>
-                  <div class="chip red w-25" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></div><div class="chip peach-gradient w-25"><p class="w-100 font-weight-bold" >{{abos[0].qty}}</p></div><div class="chip green w-25" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></div>
+                  <div class="chip red w-25" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></div><div class="chip indigo w-25"><p class="w-100 font-weight-bold" >{{abos[0].qty}}</p></div><div class="chip green w-25" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></div>
               </li>
               <li *ngIf="abos[1].qty !== 0">
                   <p class="mt-1" >Abonnement(s): {{abos[1].name}}</p>
-                  <div class="chip red w-25" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></div><div class="chip aqua-gradient w-25"><p class="w-100 font-weight-bold" >{{abos[1].qty}}</p></div><div class="chip green w-25" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></div>
+                  <div class="chip red w-25" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></div><div class="chip blue w-25"><p class="w-100 font-weight-bold" >{{abos[1].qty}}</p></div><div class="chip green w-25" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></div>
               </li>
               <li *ngIf="abos[2].qty !== 0">
                   <p class="mt-1" >Abonnement(s): {{abos[2].name}}</p>
-                  <div class="chip red w-25" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></div><div class="chip purple-gradient w-25"><p class="w-100 font-weight-bold" >{{abos[2].qty}}</p></div><div class="chip green w-25" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></div>
+                  <div class="chip red w-25" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></div><div class="chip deep-purple w-25"><p class="w-100 font-weight-bold" >{{abos[2].qty}}</p></div><div class="chip green w-25" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></div>
               </li>
             </ul>
 
@@ -202,9 +202,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="heading lead mx-auto">Valider votre panier</h1>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
-                        <span aria-hidden="true" class="white-text">×</span>
-                    </button>
+                    
                 </div>
                 <div class="modal-body">
                     <div class="text-center">
@@ -221,7 +219,7 @@
         </div>
     </div>
     <!--MODALS INSTRUCTIONS TERMINAL DE PAIEMENT-->
-    <div mdbModal #CB="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div mdbModal #CB="mdb-modal" [config]="{ ignoreBackdropClick: true }" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-notify modal-info" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -260,9 +258,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="heading lead mx-auto">RETOUR AU MENU</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
-                    <span aria-hidden="true" class="white-text">×</span>
-                </button>
+                
             </div>
             <div class="modal-body">
                 <div class="text-center">

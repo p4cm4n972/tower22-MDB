@@ -28,3 +28,11 @@
     margin-left: -1.2rem;
     margin-top: 0.7rem;
 }    
+.menu {
+    position: absolute; 
+    top: 50px;
+    left: 20px;
+    width: 300px;
+    height: auto;
+    z-index: 10000;
+}
