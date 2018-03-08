@@ -124,7 +124,7 @@ export class TicketsComponent implements OnInit {
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
     this.rest.checkOut(TransactionNumber, this.total);
   }
-
+// SOCKET EMIT STATUS
   status(data) {
     switch (data) {
       case 'CB':
@@ -147,8 +147,6 @@ export class TicketsComponent implements OnInit {
       case 'Dispenser OK':
         this.dispenserModal.show();
         break;
-
-
     }
   }
 

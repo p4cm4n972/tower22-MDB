@@ -25,7 +25,6 @@ export class AboComponent implements OnInit {
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
   @ViewChild('back') public backModal;
-  
   // ALERT PAIEMENT ACCEPTE
   paiementSuccess() {
     const options = { positionClass: 'toast-top-center', progressBar: true, };
