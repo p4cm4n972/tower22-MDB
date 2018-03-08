@@ -1,4 +1,8 @@
 {
+  "include": [
+    "node_modules/ng-mdb-pro/**/*.ts",
+    "src/**/*.ts"
+  ],
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",

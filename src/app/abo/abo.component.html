@@ -1,0 +1,259 @@
+<div class="container-fluid">
+  <!--Section: Pricing v.1-->
+  <section class="section pb-3">
+    <!--Section heading-->
+    <h1 class="section-heading h1 blue-text">
+      <button class="btn blue btn-rounded waves-light" mdbRippleRadius (click)='onBack()'>
+        <i class="fa fa-5x fa-chevron-circle-left" aria-hidden="true">RETOUR</i>
+      </button>Choisir son abonnement</h1>
+    <!--Section description-->
+    <p class="section-description"></p>
+
+    <!--First row-->
+    <div class="row">
+
+      <!--First column-->
+      <div class="col-lg-2 col-md-12 mb-r">
+
+        <!--Pricing card-->
+        <div class="card pricing-card" (click)="add('enfant')">
+          <!--Price-->
+          <div class="price header blue">
+            <h1>70</h1>
+            <div class="version">
+              <h5>Enfants</h5>
+            </div>
+          </div>
+          <!--/.Price-->
+
+          <!--Features-->
+          <div class="card-body striped">
+            <ul>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Slip de bain</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Bonnet de bain </p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Serviette de bain</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Casier sécurisé</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Claquette </p>
+              </li>
+            </ul>
+
+            <button class="btn btn-blue waves-light" mdbRippleRadius>AJOUTER PANIER</button>
+          </div>
+          <!--/.Features-->
+
+        </div>
+        <!--/.Pricing card-->
+
+      </div>
+      <!--/First column-->
+
+      <!--Second column-->
+      <div class="col-lg-2 col-md-6 mb-r">
+
+        <!--Pricing card-->
+        <div class="card pricing-card" (click)="add('adulte')">
+          <!--Price-->
+          <div class="price header indigo">
+            <h1>100</h1>
+            <div class="version">
+              <h5>Adultes</h5>
+            </div>
+          </div>
+          <!--/.Price-->
+
+          <!--Features-->
+          <div class="card-body striped">
+            <ul>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Slip de bain</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Bonnet de bain </p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Serviette de bain</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Casier sécurisé</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Claquette </p>
+              </li>
+            </ul>
+
+            <button class="btn btn-indigo waves-light" mdbRippleRadius>AJOUTER PANIER</button>
+          </div>
+          <!--/.Features-->
+
+        </div>
+        <!--/.Pricing card-->
+
+      </div>
+      <!--/Second column-->
+
+      <!--Third column-->
+      <div class="col-lg-2 col-md-6 mb-r">
+        <!--Pricing card-->
+        <div class="card pricing-card" (click)="add('groupe')">
+          <!--Price-->
+          <div class="price header deep-purple">
+            <h1>50</h1>
+            <div class="version">
+              <h5>Groupes</h5>
+            </div>
+          </div>
+          <!--/.Price-->
+
+          <!--Features-->
+          <div class="card-body striped">
+            <ul>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Slip de bain</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Bonnet de bain </p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Serviette de bain</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Casier sécurisé</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-check"></i> Claquette </p>
+              </li>
+            </ul>
+
+            <button class="btn btn-deep-purple waves-light" mdbRippleRadius>AJOUTER PANIER</button>
+          </div>
+          <!--/.Features-->
+
+        </div>
+        <!--/.Pricing card-->
+      </div>
+      <!--/Third column-->
+      <!--abo ROW-->
+      <div class="col-lg-5 col-md-12 mb-r">
+        <!--Pricing card-->
+        <div class="card pricing-card white-text">
+          <!--Price-->
+          <div class="header elegant-color">
+            <h4>VOTRE PANIER <div class="chip green" *ngIf="abo !== 0">{{abo}}</div></h4>
+            <div class="chip yellow font-weight-bold mx-auto" *ngIf="total !== 0"><h2>{{total}},00 €</h2></div>
+          </div>
+          <!--Price-->
+
+          <!--Features-->
+          <!--PANIER-->
+          <div class="card-body striped purple-striped card-background heading px-5" >
+            <h1 class="my-4" *ngIf="abo === 0">Votre panier est vide </h1>
+            <ul *ngIf="abo !== 0" >
+              <li *ngIf="abos[0].qty !== 0">
+                <p class="mt-1" >
+                  Abonnement(s): {{abos[0].name}}</p>
+                  <div class="chip red w-25" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></div><div class="chip peach-gradient w-25"><p class="w-100 font-weight-bold" >{{abos[0].qty}}</p></div><div class="chip green w-25" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></div>
+              </li>
+              <li *ngIf="abos[1].qty !== 0">
+                  <p class="mt-1" >Abonnement(s): {{abos[1].name}}</p>
+                  <div class="chip red w-25" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></div><div class="chip aqua-gradient w-25"><p class="w-100 font-weight-bold" >{{abos[1].qty}}</p></div><div class="chip green w-25" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></div>
+              </li>
+              <li *ngIf="abos[2].qty !== 0">
+                  <p class="mt-1" >Abonnement(s): {{abos[2].name}}</p>
+                  <div class="chip red w-25" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></div><div class="chip purple-gradient w-25"><p class="w-100 font-weight-bold" >{{abos[2].qty}}</p></div><div class="chip green w-25" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></div>
+              </li>
+            </ul>
+
+            <button class="mb-3 mt-3 btn w-100 btn-rounded waves-light" mdbRippleRadius [disabled]="abo === 0" [style.background]="abo === 0 ? '#ffbb33' : '#00C851'" (click)="style.show()">PAYER</button>
+          </div>
+          <!--Features-->
+        </div>
+        <!--Grid column-->
+
+      </div>
+    </div>
+    <!--/First row-->
+    <!--MODALS VALIDATION PANIER-->
+    <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="heading lead mx-auto">Valider votre panier</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <h2>Voulez vous vraiment valider votre panier ?</h2>
+                        <h3>Prochaine étape paiement</h3>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a type="button" class="btn btn-primary-modal waves-light"  (click)="payer()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+                    <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Annuler</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODALS INSTRUCTIONS TERMINAL DE PAIEMENT-->
+    <div mdbModal #CB="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="heading lead mx-auto">PAIEMENT CB</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <h2>Veuillez suivre les instructions sur le terminal de paiement...</h2>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!--MODALS DISPENSER-->
+    <div mdbModal #dispenser="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-notify modal-info" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="heading lead mx-auto">CARTE D'ABONNEMENT</h1>
+              </div>
+              <div class="modal-body">
+                  <div class="text-center">
+                      <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                      <h2>Veuillez récupérer votre carte d'abonnement, merci</h2>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+  </div>
+  </section>
+  <!--Section: Pricing v.1-->
+</div>
