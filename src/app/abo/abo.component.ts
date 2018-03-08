@@ -24,6 +24,8 @@ export class AboComponent implements OnInit {
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
+  @ViewChild('back') public backModal;
+  
   // ALERT PAIEMENT ACCEPTE
   paiementSuccess() {
     const options = { positionClass: 'toast-top-center', progressBar: true, };
@@ -121,6 +123,18 @@ export class AboComponent implements OnInit {
   ngOnInit() {
   }
   onBack(): void {
+    if (this.total === 0) {
+      this.location.back();
+    } else {
+      this.backModal.show();
+    }
+  }
+  onBackValid(): void {
+    for (let i = 0; i < this.abos.length; i++) {
+      this.abos[i].qty = 0;
+      this.total = 0;
+      this.abo = 0;
+    }
     this.location.back();
   }
 }

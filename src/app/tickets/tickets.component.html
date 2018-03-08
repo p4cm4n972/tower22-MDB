@@ -13,7 +13,7 @@
     <!--Grid row-->
     <div class="row" >
       <!--Grid column-->
-      <div class="col-lg-2 col-md-12 mb-r">
+      <div class="col-lg-3 col-md-12 mb-r">
         <!--Pricing card-->
         <div class="card pricing-card white-text" (click)="add('enfant')">
           <!--Price-->
@@ -45,7 +45,7 @@
       <!--Grid column-->
       </div>
       <!--Grid column-->
-      <div class="col-lg-2 col-md-12 mb-r">
+      <div class="col-lg-3 col-md-12 mb-r">
         <!--Pricing card-->
         <div class="card pricing-card white-text" (click)="add('adulte')">
           <!--Price-->
@@ -79,7 +79,7 @@
       <!--Grid column-->
 
       <!--Grid column-->
-      <div class="col-lg-2 col-md-12 mb-r">
+      <div class="col-lg-3 col-md-12 mb-r">
         <!--Pricing card-->
         <div class="card pricing-card white-text" (click)="add('groupe')">
           <!--Price-->
@@ -112,7 +112,7 @@
       <!--Grid row-->
 
       <!--CART ROW-->
-      <div class="col-lg-5 col-md-12 mb-r">
+      <div class="col-lg-3 col-md-12 mb-r">
           <!--Pricing card-->
           <div class="card pricing-card white-text">
             <!--Price-->
@@ -208,6 +208,29 @@
           </div>
       </div>
   </div>
+  <!--BACK ANNULATION-->
+  <div mdbModal #back="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="heading lead mx-auto">RETOUR AU MENU</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <h2>Voulez vous vraiment annuler votre panier ?</h2>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-primary-modal waves-light"  (click)="onBackValid()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="back.hide()" mdbRippleRadius>Annuler</a>
+            </div>
+        </div>
+    </div>
+</div>
 
   </section>
   <!--Section: Pricing v.1-->

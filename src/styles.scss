@@ -21,6 +21,10 @@
         height: 700px;
     } 
 }
-.toast {
-    width: 75%;
-}     
+.pricing-card .price h1::before, .pricing-card .price h2::before {
+    content: "€";
+    font-size: 30px;
+    position: absolute;
+    margin-left: -1.2rem;
+    margin-top: 0.7rem;
+}    

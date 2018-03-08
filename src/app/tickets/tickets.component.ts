@@ -28,6 +28,7 @@ export class TicketsComponent implements OnInit {
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
+  @ViewChild('back') public backModal;
   // ALERT PAIEMENT ACCEPTE
   paiementSuccess() {
     const options = { positionClass: 'toast-top-center', progressBar: true, };
@@ -136,14 +137,14 @@ export class TicketsComponent implements OnInit {
           this.cart = 0;
         }
         break;
-        case 'Print CB OK':
+      case 'Print CB OK':
         this.rest.dataticket();
         this.receiptInfo();
         break;
-        case 'Print DATA OK':
+      case 'Print DATA OK':
         this.receiptSuccess();
         break;
-        case 'Dispenser OK':
+      case 'Dispenser OK':
         this.dispenserModal.show();
         break;
 
@@ -159,6 +160,18 @@ export class TicketsComponent implements OnInit {
     });
   }
   onBack(): void {
+    if (this.total === 0) {
+      this.location.back();
+    } else {
+      this.backModal.show();
+    }
+  }
+  onBackValid(): void {
+    for (let i = 0; i < this.tickets.length; i++) {
+      this.tickets[i].qty = 0;
+      this.total = 0;
+      this.cart = 0;
+    }
     this.location.back();
   }
 }
