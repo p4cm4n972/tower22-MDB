@@ -3,7 +3,7 @@
   <section class="section pb-3">
     <!--Section heading-->
     <h1 class="section-heading h1 blue-text">
-      <button class="btn blue btn-rounded waves-light menu" mdbRippleRadius (click)='onBack()'>
+      <button class="btn btn-lg blue btn-rounded waves-light menu" mdbRippleRadius (click)='onBack()'>
         <i class="fa fa-5x fa-chevron-circle-left" aria-hidden="true"> MENU</i>
       </button>Choisir son abonnement</h1>
     <!--Section description-->
@@ -51,7 +51,7 @@
               </li>
             </ul>
 
-            <button class="btn btn-blue waves-light" mdbRippleRadius>AJOUTER PANIER</button>
+            <button class="btn btn-lg btn-blue waves-light" mdbRippleRadius>AJOUTER PANIER</button>
           </div>
           <!--/.Features-->
 
@@ -100,7 +100,7 @@
               </li>
             </ul>
 
-            <button class="btn btn-indigo waves-light" mdbRippleRadius>AJOUTER PANIER</button>
+            <button class="btn btn-lg btn-indigo waves-light" mdbRippleRadius>AJOUTER PANIER</button>
           </div>
           <!--/.Features-->
 
@@ -148,7 +148,7 @@
               </li>
             </ul>
 
-            <button class="btn btn-deep-purple waves-light" mdbRippleRadius>AJOUTER PANIER</button>
+            <button class="btn btn-lg btn-deep-purple waves-light" mdbRippleRadius>AJOUTER PANIER</button>
           </div>
           <!--/.Features-->
 
@@ -175,25 +175,25 @@
               <li *ngIf="abos[0].qty !== 0">
                 <p class="mt-1" >
                   Abonnement(s): {{abos[0].name}}</p>
-                  <div class="chip red lighten-1 w-25" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></div>
+                  <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></button>
                   <div class="chip indigo w-10"><p class=" font-weight-bold" >{{abos[0].qty}}</p></div>
-                  <div class="chip green w-25" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></div>
+                  <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></button>
               </li>
               <li *ngIf="abos[1].qty !== 0">
                   <p class="mt-1" >Abonnement(s): {{abos[1].name}}</p>
-                  <div class="chip red lighten-1 w-25" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></div>
+                  <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></button>
                   <div class="chip blue w-10"><p class="font-weight-bold" >{{abos[1].qty}}</p></div>
-                  <div class="chip green w-25" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></div>
+                  <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></button>
               </li>
               <li *ngIf="abos[2].qty !== 0">
                   <p class="mt-1" >Abonnement(s): {{abos[2].name}}</p>
-                  <div class="chip red lighten-1 w-25" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></div>
+                  <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></button>
                   <div class="chip deep-purple w-10"><p class="font-weight-bold" >{{abos[2].qty}}</p></div>
-                  <div class="chip green w-25" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></div>
+                  <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></button>
               </li>
             </ul>
 
-            <button class="mb-3 mt-3 btn w-100 btn-rounded waves-light" mdbRippleRadius [disabled]="abo === 0" [style.background]="abo === 0 ? '#ffbb33' : '#00C851'" (click)="style.show()">PAYER</button>
+            <button class="mb-3 mt-3 btn btn-lg w-100 btn-rounded waves-light" mdbRippleRadius [disabled]="abo === 0" [style.background]="abo === 0 ? '#ffbb33' : '#00C851'" (click)="style.show()">PAYER</button>
           </div>
           <!--Features-->
         </div>
@@ -218,8 +218,8 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <a type="button" class="btn btn-primary-modal waves-light"  (click)="payer()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
-                    <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Annuler</a>
+                    <a type="button" class="btn btn-lg btn-primary-modal waves-light"  (click)="payer()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+                    <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Annuler</a>
                 </div>
             </div>
         </div>
@@ -273,8 +273,8 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <a type="button" class="btn btn-primary-modal waves-light"  (click)="onBackValid()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
-                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="back.hide()" mdbRippleRadius>Annuler</a>
+                <a type="button" class="btn btn-lg btn-primary-modal waves-light"  (click)="onBackValid()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+                <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="back.hide()" mdbRippleRadius>Annuler</a>
             </div>
         </div>
     </div>

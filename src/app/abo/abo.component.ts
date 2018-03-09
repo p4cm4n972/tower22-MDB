@@ -21,23 +21,24 @@ export class AboComponent implements OnInit {
   public total: number = 0;
   public abos = ABOS;
   public sub: Subscription;
+  public data;
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
   @ViewChild('back') public backModal;
   // ALERT PAIEMENT ACCEPTE
   paiementSuccess() {
-    const options = { positionClass: 'toast-top-center', progressBar: true, };
+    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.success('Impression ticket CB encours', 'PAIEMENT ACCEPTE', options);
   }
   // ALERT IMPRESSION TICKET CB
   receiptInfo() {
-    const options = { positionClass: 'toast-top-center', progressBar: true, };
+    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.info('Impression reçu encours', 'Reçu', options);
   }
   // ALERT IMPRESSION RECU
   receiptSuccess() {
-    const options = { positionClass: 'toast-top-center', progressBar: true, };
+    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.info('Merci de récuperer vos ticket', 'MERCI ET A BIENTOT', options);
   }
   add(abo): void {
@@ -119,7 +120,36 @@ export class AboComponent implements OnInit {
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
     this.rest.checkOut(TransactionNumber, this.total);
   }
+  status(data) {
+    switch (data) {
+      case 'CB':
+        this.CBModal.hide();
+        this.paiementSuccess();
+        // RESET PANIER
+        for (let i = 0; i < this.abos.length; i++) {
+          this.abos[i].qty = 0;
+          this.total = 0;
+          this.abo = 0;
+        }
+        break;
+      case 'Print CB OK':
+        this.rest.dataticket();
+        this.receiptInfo();
+        break;
+      case 'Print DATA OK':
+        this.receiptSuccess();
+        break;
+      case 'Dispenser OK':
+        this.dispenserModal.show();
+        break;
+    }
+  }
   ngOnInit() {
+    this.sub = this.ws.getStatus().subscribe(data => {
+      this.data = data;
+      console.log(data);
+      this.status(data);
+    });
   }
   onBack(): void {
     if (this.total === 0) {
