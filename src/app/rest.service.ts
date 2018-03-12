@@ -8,13 +8,13 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
   private socket: Socket;
-  public uri = 'http://10.1.1.128:9010/ws/payment';
+  public uri = 'http://10.1.1.144:9010/ws/payment';
 
   // CHECK OUT AMOUNT
   checkOut(tn, tt) {
     console.log(typeof tn, typeof tt);
     const invoice = { TransactionNumber: tn, total: tt };
-    this.socket = socketIo('http://10.1.1.144:5000');
+    this.socket = socketIo('http://10.1.1.111:5000');
     this.socket.emit('invoice', invoice);
     return this.http
       .post(
@@ -31,7 +31,7 @@ export class RestService {
     console.log('Print Ticket');
     return this.http
       .post(
-        'http://10.1.1.128:9010/ws/dataticket',
+        'http://10.1.1.144:9010/ws/dataticket',
         JSON.stringify({
           'HostId': 'CIEME_01',
           'TicketType': 'AppTicket',
@@ -45,7 +45,7 @@ export class RestService {
     console.log('Dispenser');
     return this.http
       .post(
-        'http://10.1.1.128:9010/ws/dispenser',
+        'http://10.1.1.144:9010/ws/dispenser',
         JSON.stringify({
           'HostId': 'CIEME_01',
           'Cmd': 'Distribute'
