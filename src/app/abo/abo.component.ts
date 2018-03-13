@@ -131,7 +131,7 @@ export class AboComponent implements OnInit {
           this.total = 0;
           this.abo = 0;
         }
-        this.rest.checkCB();        
+        this.rest.checkCB();
         break;
       case 'Print CB OK':
         this.rest.dataticket();
@@ -139,6 +139,7 @@ export class AboComponent implements OnInit {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
+        this.rest.dispenser();
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
