@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { AboComponent } from './abo/abo.component';
-
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'tickets', component: TicketsComponent },
@@ -35,14 +35,14 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true }
+      { enableTracing: true, useHash: true }
     ),
     MDBBootstrapModules.forRoot(),
     ToastModule.forRoot(),
     BrowserModule,
     HttpClientModule
   ],
-  providers: [MDBSpinningPreloader, RestService, WsService ],
+  providers: [MDBSpinningPreloader, RestService, WsService, {provide: LocationStrategy, useClass: HashLocationStrategy} ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
