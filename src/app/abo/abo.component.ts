@@ -16,7 +16,7 @@ import { WsService } from '../ws.service';
 })
 export class AboComponent implements OnInit {
 
-  constructor(private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) { }
+  constructor(public location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) { }
   public abo: number = 0;
   public total: number = 0;
   public abos = ABOS;
@@ -143,8 +143,7 @@ export class AboComponent implements OnInit {
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
-        setTimeout(this.dispenserModal.hide(), 5000);
-        this.location.go('/home') ;
+        this.location.back();
         break;
     }
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-home',
@@ -7,9 +7,13 @@ import { Location } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private zone: NgZone) { }
 
   ngOnInit() {
+    const reloadPage = function () {
+      this.zone.runOutsideAngular(() =>
+    location.reload());
+    };
   }
 
 }
