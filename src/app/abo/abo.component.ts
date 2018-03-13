@@ -48,27 +48,27 @@ export class AboComponent implements OnInit {
         this.abos[0].qty++;
         ++this.abo;
         this.total =
-          +this.abos[0].qty * 100 +
-          +this.abos[1].qty * 70 +
-          +this.abos[2].qty * 50;
+          +this.abos[0].qty * 10 +
+          +this.abos[1].qty * 7 +
+          +this.abos[2].qty * 5;
         break;
       // ENFANT
       case 'enfant':
         this.abos[1].qty++;
         ++this.abo;
         this.total =
-          +this.abos[0].qty * 100 +
-          +this.abos[1].qty * 70 +
-          +this.abos[2].qty * 50;
+          +this.abos[0].qty * 10 +
+          +this.abos[1].qty * 7 +
+          +this.abos[2].qty * 5;
         break;
       // GROUPE
       case 'groupe':
         this.abos[2].qty++;
         ++this.abo;
         this.total =
-          +this.abos[0].qty * 100 +
-          +this.abos[1].qty * 70 +
-          +this.abos[2].qty * 50;
+          +this.abos[0].qty * 1 +
+          +this.abos[1].qty * 7 +
+          +this.abos[2].qty * 5;
         break;
     }
   }
@@ -77,17 +77,17 @@ export class AboComponent implements OnInit {
     switch (items) {
       case 'adulte':
         this.abo = this.abo - 1;
-        this.total = this.total - 100;
+        this.total = this.total - 10;
         this.abos[0].qty = this.abos[0].qty - 1;
         break;
       case 'enfant':
         this.abo = this.abo - 1;
-        this.total = this.total - 70;
+        this.total = this.total - 7;
         this.abos[1].qty = this.abos[1].qty - 1;
         break;
       case 'groupe':
         this.abo = this.abo - 1;
-        this.total = this.total - 50;
+        this.total = this.total - 5;
         this.abos[2].qty = this.abos[2].qty - 1;
         break;
     }
@@ -97,17 +97,17 @@ export class AboComponent implements OnInit {
     switch (items) {
       case 'adulte':
         this.abo = this.abo + 1;
-        this.total = this.total + 100;
+        this.total = this.total + 10;
         this.abos[0].qty = this.abos[0].qty + 1;
         break;
       case 'enfant':
         this.abo = this.abo + 1;
-        this.total = this.total + 70;
+        this.total = this.total + 7;
         this.abos[1].qty = this.abos[1].qty + 1;
         break;
       case 'groupe':
         this.abo = this.abo + 1;
-        this.total = this.total + 50;
+        this.total = this.total + 5;
         this.abos[2].qty = this.abos[2].qty + 1;
         break;
     }
