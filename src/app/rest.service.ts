@@ -7,14 +7,13 @@ import { Socket } from './ws';
 export class RestService {
 
   constructor(private http: HttpClient) { }
-  private socket: Socket;
+  private socket: Socket = socketIo('http://10.1.1.111:5000');
   public uri = 'http://10.1.1.144:9010/ws/payment';
 
   // CHECK OUT AMOUNT
   checkOut(tn, tt) {
     console.log(typeof tn, typeof tt);
     const invoice = { TransactionNumber: tn, total: tt };
-    this.socket = socketIo('http://10.1.1.111:5000');
     this.socket.emit('invoice', invoice);
     return this.http
       .post(

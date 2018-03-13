@@ -135,8 +135,4 @@ io.on("connection", function (socket) {
     });
     res.json("info CB");
   });
-
-  socket.on("disconnect", function () {
-    io.emit("user disconnected");
-  });
 });
