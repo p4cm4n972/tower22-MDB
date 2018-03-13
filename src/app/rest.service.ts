@@ -20,7 +20,7 @@ export class RestService {
       .post(
         this.uri,
         JSON.stringify({
-          AmountToPay: tt.toString(),
+          AmountToPay: (tt * 100 ).toString(),
           TransactionNumber: tn.toString()
         })
       )
