@@ -20,10 +20,22 @@ export class RestService {
       .post(
         this.uri,
         JSON.stringify({
-          AmountToPay: (tt * 100 ).toString(),
+          AmountToPay: (tt * 100).toString(),
           TransactionNumber: tn.toString()
         })
       )
+      .subscribe();
+  }
+  // PRINT CB TICKET
+  checkCB() {
+    return this.http.post(
+      'http://10.1.1.144:9010/ws/dataticket',
+      JSON.stringify({
+        'HostId': 'CIEME_01',
+        'TicketType': 'CBTicket',
+        'TicketURL': 'BorneProduit/DataTicket/RecuCB.pdf'
+      })
+    )
       .subscribe();
   }
   // PRINT RECEIPT

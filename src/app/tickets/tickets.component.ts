@@ -136,6 +136,7 @@ export class TicketsComponent implements OnInit {
           this.total = 0;
           this.cart = 0;
         }
+        this.rest.checkCB();
         break;
       case 'Print CB OK':
         this.rest.dataticket();
