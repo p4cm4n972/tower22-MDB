@@ -143,6 +143,8 @@ export class AboComponent implements OnInit {
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
+        setTimeout(this.dispenserModal.hide(), 5000 );
+        this.location.back();
         break;
     }
   }
