@@ -29,17 +29,17 @@ export class TicketsComponent implements OnInit {
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
   @ViewChild('back') public backModal;
-  // ALERT PAIEMENT ACCEPTE
+  // ALERT: PAIEMENT ACCEPTE
   paiementSuccess() {
     const options = { positionClass: 'toast-top-center', progressBar: true, timeOut: 5000, toastClass: 'toasty' };
     this.toast.success('Impression ticket CB encours', 'PAIEMENT ACCEPTE', options);
   }
-  // ALERT IMPRESSION TICKET CB
+  // ALERT: IMPRESSION TICKET CB
   receiptInfo() {
     const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty'};
     this.toast.info('Impression reçu encours', 'Reçu', options);
   }
-  // ALERT IMPRESSION RECU
+  // ALERT: IMPRESSION RECU
   receiptSuccess() {
     const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty'};
     this.toast.info('Merci de récuperer vos tickets', 'MERCI ET A BIENTOT', options);
@@ -116,7 +116,7 @@ export class TicketsComponent implements OnInit {
         break;
     }
   }
-  // DEBUT TRANSACTION ENVOIE INFOS
+  // DEBUT TRANSACTION ENVOIE INFOS (n° transaction, montant total)
   payer(total) {
     console.log(this.total);
     this.contentModal.hide();
@@ -124,7 +124,7 @@ export class TicketsComponent implements OnInit {
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
     this.rest.checkOut(TransactionNumber, this.total);
   }
-// SOCKET EMIT STATUS
+// WEB SOCKET EVENT LISTENER STATUS
   status(data) {
     switch (data) {
       case 'CB':

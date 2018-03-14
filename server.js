@@ -64,7 +64,7 @@ io.on("connection", function (socket) {
     doc = new PDFDocument({
       size: [300, 600]
     });
-    doc.image('logo.png', 0, 15, 250);
+    doc.image('logo.png', 10, 15, 250);
     doc.moveDown();
     doc.text('7, rue d\'Alembert', 10, 100);
     doc.text('ZAC de la Noue Rousseau');
