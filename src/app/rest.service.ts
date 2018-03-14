@@ -31,7 +31,7 @@ export class RestService {
       JSON.stringify({
         'HostId': 'CIEME_01',
         'TicketType': 'CBTicket',
-        'TicketURL': 'BorneProduit/DataTicket/RecuCB.pdf'
+        'TicketURL': 'BorneProduit/DataTicket/dataticket.pdf'
       })
     )
       .subscribe();
