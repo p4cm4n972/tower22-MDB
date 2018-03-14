@@ -110,36 +110,21 @@ io.on("connection", function (socket) {
     console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.TypeTicket));
     //PRINT TICKET
     doc = new PDFDocument({
-      size: [300, 600]
+      size: [300]
     });
-    doc.text('SBI :' + dataticket.SubContractorId, {
-      width: 300,
-    });
-    doc.text('N° Carte :' + dataticket.NumCarte, {
-      width: 300,
-    });
-    doc.text('ID Carte :' + dataticket.IdCarte, {
-      width: 300,
-
-    });
-    doc.text('Carte Bancaire :' + dataticket.TypeCarteBancaire, {
-      width: 300,
-    });
-    doc.text('Date :' + dataticket.Date, {
-      width: 300,
-    });
-    doc.text('location :' + dataticket.AdressLine1, {
-      width: 300,
-    });
-    doc.text('Type Transaction :' + dataticket.TypeTransaction, {
-      width: 300,
-    });
-    doc.text('Type ticket :' + dataticket.TypeTicket, {
-      width: 300,
-    });
-    doc.text('Montant :' + dataticket.Montant, {
-      width: 300,
-    });
+    doc.text('CARTE BANCAIRE', {align:'center'});
+    doc.moveDown();    
+    doc.text(dataticket.SubContractorId);
+    doc.text('le' + dataticket.Date);
+    doc.text(dataticket.AdressLine1);
+    doc.text('APLUS SA');
+    doc.text(dataticket.NumCarte);
+    doc.text(dataticket.IdCarte);
+    doc.text(dataticket.TypeCarteBancaire);
+    doc.text('MONTANT REEL =' + dataticket.Montant);
+    doc.text(dataticket.TypeTransaction);
+    doc.text(dataticket.TypeTicket);
+    doc.text('A CONSERVER');
     doc.pipe(fs.createWriteStream("../BorneProduit/DataTicket/dataticket.pdf"));
     doc.end();
     io.emit("CB", {
