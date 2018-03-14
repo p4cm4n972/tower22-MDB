@@ -4,6 +4,8 @@ import * as socketIo from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Socket } from './ws';
+import { Url } from '../app/app-config';
+
 
 @Injectable()
 export class WsService {
@@ -13,7 +15,7 @@ export class WsService {
 
   getStatus(): Observable<string> {
     console.log('GET');
-    this.socket = socketIo('http://10.1.1.111:5000');
+    this.socket = socketIo(Url.server);
     this.socket.on('clientdata', (res) => {
       this.observer.next(res.data);
     });

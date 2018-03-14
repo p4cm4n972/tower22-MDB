@@ -16,7 +16,7 @@ import { WsService } from '../ws.service';
 })
 export class AboComponent implements OnInit {
 
-  constructor(public location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) { }
+  constructor(private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) { }
   public abo: number = 0;
   public total: number = 0;
   public abos = ABOS;
@@ -112,7 +112,7 @@ export class AboComponent implements OnInit {
         break;
     }
   }
-  //
+  // DEBUT TRANSACTION ENVOIE INFOS
   payer(total) {
     console.log(this.total);
     this.contentModal.hide();
@@ -120,6 +120,7 @@ export class AboComponent implements OnInit {
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
     this.rest.checkOut(TransactionNumber, this.total);
   }
+  // SOCKET EMIT STATUS
   status(data) {
     switch (data) {
       case 'CB':
@@ -140,10 +141,11 @@ export class AboComponent implements OnInit {
       case 'Print DATA OK':
         this.receiptSuccess();
         this.rest.dispenser();
+        this.dispenserModal.show();
         break;
       case 'Dispenser OK':
-        this.dispenserModal.show();
         this.location.back();
+        this.rest.heartbeat();
         break;
     }
   }
@@ -154,6 +156,7 @@ export class AboComponent implements OnInit {
       this.status(data);
     });
   }
+  // CONDITION RETOUR MENU
   onBack(): void {
     if (this.total === 0) {
       this.location.back();
@@ -161,6 +164,7 @@ export class AboComponent implements OnInit {
       this.backModal.show();
     }
   }
+  // RETOUR MENU
   onBackValid(): void {
     for (let i = 0; i < this.abos.length; i++) {
       this.abos[i].qty = 0;

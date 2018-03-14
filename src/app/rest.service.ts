@@ -2,22 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as socketIo from 'socket.io-client';
 import { Socket } from './ws';
+import { Url } from '../app/app-config';
 
 @Injectable()
 export class RestService {
-
   constructor(private http: HttpClient) { }
-  private socket: Socket = socketIo('http://10.1.1.111:5000');
-  public uri = 'http://10.1.1.144:9010/ws/payment';
-
+  public data;
+  private socket: Socket ;
   // CHECK OUT AMOUNT
   checkOut(tn, tt) {
-    console.log(typeof tn, typeof tt);
     const invoice = { TransactionNumber: tn, total: tt };
+    this.socket = socketIo(Url.server);
     this.socket.emit('invoice', invoice);
     return this.http
       .post(
-        this.uri,
+        Url.borneForPayment,
         JSON.stringify({
           AmountToPay: (tt * 100).toString(),
           TransactionNumber: tn.toString()
@@ -28,7 +27,7 @@ export class RestService {
   // PRINT CB TICKET
   checkCB() {
     return this.http.post(
-      'http://10.1.1.144:9010/ws/dataticket',
+      Url.borneForDataticket,
       JSON.stringify({
         'HostId': 'CIEME_01',
         'TicketType': 'CBTicket',
@@ -42,7 +41,7 @@ export class RestService {
     console.log('Print Ticket');
     return this.http
       .post(
-        'http://10.1.1.144:9010/ws/dataticket',
+        Url.borneForDataticket,
         JSON.stringify({
           'HostId': 'CIEME_01',
           'TicketType': 'AppTicket',
@@ -56,12 +55,21 @@ export class RestService {
     console.log('Dispenser');
     return this.http
       .post(
-        'http://10.1.1.144:9010/ws/dispenser',
+        Url.borneForDispenser,
         JSON.stringify({
           'HostId': 'CIEME_01',
           'Cmd': 'Distribute'
         })
       )
       .subscribe();
+  }
+  // Product Mode
+  heartbeat() {
+    return this.http
+      .get(
+        Url.borneForHeartbeat)
+      .subscribe(this.data = data =>{
+        console.log(data.ProductMode);
+      });
   }
 }

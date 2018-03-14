@@ -116,7 +116,7 @@ export class TicketsComponent implements OnInit {
         break;
     }
   }
-  //
+  // DEBUT TRANSACTION ENVOIE INFOS
   payer(total) {
     console.log(this.total);
     this.contentModal.hide();
@@ -159,6 +159,7 @@ export class TicketsComponent implements OnInit {
       this.status(data);
     });
   }
+  // CONDITION RETOUR MENU
   onBack(): void {
     if (this.total === 0) {
       this.location.back();
@@ -166,6 +167,7 @@ export class TicketsComponent implements OnInit {
       this.backModal.show();
     }
   }
+  // RETOUR MENU
   onBackValid(): void {
     for (let i = 0; i < this.tickets.length; i++) {
       this.tickets[i].qty = 0;
