@@ -141,10 +141,13 @@ export class AboComponent implements OnInit {
       case 'Print DATA OK':
         this.receiptSuccess();
         this.rest.dispenser();
-        this.dispenserModal.show();
         break;
-      case 'Dispenser OK':
-        this.location.back();
+        case 'Dispenser OK':
+        this.dispenserModal.show();
+        const location = this.location;
+        setTimeout( function() {
+          location.back();
+        }, 10000);
         this.rest.heartbeat();
         break;
     }

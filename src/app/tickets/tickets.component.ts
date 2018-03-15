@@ -25,6 +25,7 @@ export class TicketsComponent implements OnInit {
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
+
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;

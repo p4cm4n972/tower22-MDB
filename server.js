@@ -64,9 +64,9 @@ io.on("connection", function (socket) {
     doc = new PDFDocument({
       size: [300, 600]
     });
-    doc.image('logo.png', 10, 15, 250);
+    doc.image('logo.png', 20, 15, 250);
     doc.moveDown();
-    doc.text('7, rue d\'Alembert', 10, 100);
+    doc.text('7, rue d\'Alembert', 20, 100);
     doc.text('ZAC de la Noue Rousseau');
     doc.text('Techniparc');
     doc.text('91240 Saint Michel sur Orge');
@@ -75,11 +75,11 @@ io.on("connection", function (socket) {
     doc.fontSize(22).text('------------', {align: 'center'});
     doc.moveDown();
     doc.fontSize(14).text("Transaction n° :" + data.TransactionNumber);
-    doc.fontSize(18).text("Prix TTC : " + data.total + ',00 €',{align: 'center'});
+    doc.fontSize(18).text("Prix TTC : " + data.total + ',00€',{align: 'center'});
     doc.moveDown();    
     doc.text("TVA 10.0%            : " + ((data.total)/10) + '€');
     doc.text("Montant total HT   : " + ((data.total) -((data.total)/10)) + '€');
-    doc.text("Montant total TTC : " + (data.total) + ',00 €');
+    doc.text("Montant total TTC : " + (data.total) + ',00€');
     doc.moveDown();    
     doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50,500);
     //doc.rect(doc.x, 155, 280, doc.y).stroke();
@@ -114,7 +114,7 @@ io.on("connection", function (socket) {
     });
     doc.text('CARTE BANCAIRE', {align:'center'});
     doc.moveDown();    
-    doc.text(dataticket.SubContractorId);
+    doc.text(dataticket.SubContractorId, 20, 15);
     doc.text('le' + dataticket.Date);
     doc.text(dataticket.AdressLine1);
     doc.text('APLUS SA');
