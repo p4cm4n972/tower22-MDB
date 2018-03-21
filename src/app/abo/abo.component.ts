@@ -7,7 +7,10 @@ import { Abo } from '../abo/abo';
 import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
-
+// SOCKET IO
+import * as socketIo from 'socket.io-client';
+import { Socket } from '../ws';
+import { Url } from '../../app/app-config';
 
 @Component({
   selector: 'app-abo',
@@ -22,6 +25,8 @@ export class AboComponent implements OnInit {
   public abos = ABOS;
   public sub: Subscription;
   public data;
+  private socket: Socket;
+  
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
@@ -145,9 +150,11 @@ export class AboComponent implements OnInit {
         case 'Dispenser OK':
         this.dispenserModal.show();
         const location = this.location;
+        const rest = this.rest;
         setTimeout( function() {
+          rest.deconnect();
           location.back();
-        }, 10000);
+        }, 5000);
         this.rest.heartbeat();
         break;
     }

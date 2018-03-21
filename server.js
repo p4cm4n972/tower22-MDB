@@ -71,19 +71,25 @@ io.on("connection", function (socket) {
     doc.text('Techniparc');
     doc.text('91240 Saint Michel sur Orge');
     doc.moveDown();
-    doc.fontSize(22).text('1 TICKET PASS', {align: 'center'});
-    doc.fontSize(22).text('------------', {align: 'center'});
+    doc.fontSize(22).text('1 TICKET PASS', {
+      align: 'center'
+    });
+    doc.fontSize(22).text('------------', {
+      align: 'center'
+    });
     doc.moveDown();
     doc.fontSize(14).text("Transaction n° :" + data.TransactionNumber);
-    doc.fontSize(18).text("Prix TTC : " + data.total + ',00€',{align: 'center'});
-    doc.moveDown();    
-    doc.text("TVA 10.0%            : " + ((data.total)/10) + '€');
-    doc.text("Montant total HT   : " + ((data.total) -((data.total)/10)) + '€');
+    doc.fontSize(18).text("Prix TTC : " + data.total + ',00€', {
+      align: 'center'
+    });
+    doc.moveDown();
+    doc.text("TVA 10.0%            : " + ((data.total) / 10) + '€');
+    doc.text("Montant total HT   : " + ((data.total) - ((data.total) / 10)) + '€');
     doc.text("Montant total TTC : " + (data.total) + ',00€');
-    doc.moveDown();    
-    doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50,500);
+    doc.moveDown();
+    doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
     //doc.rect(doc.x, 155, 280, doc.y).stroke();
-    doc.image('vision.png', 80, 530 , 250);
+    doc.image('vision.png', 80, 530, 250);
     doc.pipe(fs.createWriteStream("/home/madele/BorneProduit/Receipts/Receipt.pdf"));
     doc.end();
   });
@@ -99,7 +105,7 @@ io.on("connection", function (socket) {
   app.post("/ws/cmdack", function (req, res) {
     console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body.Acknowledge));
     //EMIT
-    io.emit("receipt", {
+    socket.emit("receipt", {
       data: (req.body.Acknowledge)
     });
     res.json(req.body.Acknowledge);
@@ -109,11 +115,13 @@ io.on("connection", function (socket) {
     const dataticket = req.body;
     console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.TypeTicket));
     //PRINT TICKET
-    doc = new PDFDocument({
+    /*doc = new PDFDocument({
       size: [300]
     });
-    doc.text('CARTE BANCAIRE', {align:'center'});
-    doc.moveDown();    
+    doc.text('CARTE BANCAIRE', {
+      align: 'center'
+    });
+    doc.moveDown();
     doc.text(dataticket.SubContractorId, 20, 15);
     doc.text('le' + dataticket.Date);
     doc.text(dataticket.AdressLine1);
@@ -126,13 +134,23 @@ io.on("connection", function (socket) {
     doc.text(dataticket.TypeTicket);
     doc.text('A CONSERVER');
     doc.pipe(fs.createWriteStream("../BorneProduit/DataTicket/dataticket.pdf"));
-    doc.end();
-    io.emit("CB", {
+    doc.end();*/
+    socket.emit("CB", {
       data: "CB"
     });
     res.json("info CB");
   });
-  socket.on('disconnect', function(){
+  // INCIDENT PAIEMENT
+  app.post("/ws/incident", function (req, res) {
+    const dataticket = req.body;
+    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.TypeTicket));
+    io.emit("incident", {
+      data: "incident"
+    });
+    res.json("incident paiement");
+  })
+  socket.on('disconnect', function () {
+    socket.disconnect();
     console.log('user disconnected');
   });
 });

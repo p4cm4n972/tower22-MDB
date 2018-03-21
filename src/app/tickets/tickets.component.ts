@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Subscription';
 import { TICKETS } from '../tickets/mock-ticket';
@@ -7,7 +7,11 @@ import { Ticket } from '../tickets/ticket';
 import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
-// MATERIAL DESIGN BOOTSTRAP
+import { Router } from '@angular/router';
+// SOCKET IO
+import * as socketIo from 'socket.io-client';
+import { Socket } from '../ws';
+import { Url } from '../../app/app-config';
 
 @Component({
   selector: 'app-tickets',
@@ -15,7 +19,7 @@ import { WsService } from '../ws.service';
   styleUrls: ['./tickets.component.scss']
 })
 
-export class TicketsComponent implements OnInit {
+export class TicketsComponent implements OnInit, OnDestroy {
 
   constructor(private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) {
   }
@@ -25,11 +29,12 @@ export class TicketsComponent implements OnInit {
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
-
+  private socket: Socket;
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
   @ViewChild('back') public backModal;
+  @ViewChild('incident') public incidentModal;
   // ALERT: PAIEMENT ACCEPTE
   paiementSuccess() {
     const options = { positionClass: 'toast-top-center', progressBar: true, timeOut: 5000, toastClass: 'toasty' };
@@ -37,12 +42,12 @@ export class TicketsComponent implements OnInit {
   }
   // ALERT: IMPRESSION TICKET CB
   receiptInfo() {
-    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty'};
+    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.info('Impression reçu encours', 'Reçu', options);
   }
   // ALERT: IMPRESSION RECU
   receiptSuccess() {
-    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty'};
+    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.info('Merci de récuperer vos tickets', 'MERCI ET A BIENTOT', options);
   }
   // AJOUT tickets
@@ -121,11 +126,12 @@ export class TicketsComponent implements OnInit {
   payer(total) {
     console.log(this.total);
     this.contentModal.hide();
+    this.incidentModal.hide();
     this.CBModal.show();
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
     this.rest.checkOut(TransactionNumber, this.total);
   }
-// WEB SOCKET EVENT LISTENER STATUS
+  // WEB SOCKET EVENT LISTENER STATUS
   status(data) {
     switch (data) {
       case 'CB':
@@ -138,7 +144,6 @@ export class TicketsComponent implements OnInit {
           this.cart = 0;
         }
         this.rest.checkCB();
-        this.location.back();
         break;
       case 'Print CB OK':
         this.rest.dataticket();
@@ -146,10 +151,17 @@ export class TicketsComponent implements OnInit {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
+        this.rest.deconnect();
+        console.log('IS DISCONNECTED');
+        this.location.back();
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
         break;
+      case 'incident':
+        this.CBModal.hide();
+        this.contentModal.hide();
+        this.incidentModal.show();
     }
   }
 
@@ -159,6 +171,9 @@ export class TicketsComponent implements OnInit {
       console.log(data);
       this.status(data);
     });
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
   // CONDITION RETOUR MENU
   onBack(): void {

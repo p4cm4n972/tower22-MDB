@@ -3,16 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import * as socketIo from 'socket.io-client';
 import { Socket } from './ws';
 import { Url } from '../app/app-config';
+import { Location } from '@angular/common';
+
 
 @Injectable()
 export class RestService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private location: Location) { }
   public data;
-  private socket: Socket ;
+  private socket: Socket;
   // CHECK OUT AMOUNT
   checkOut(tn, tt) {
-    const invoice = { TransactionNumber: tn, total: tt };
     this.socket = socketIo(Url.server);
+    const invoice = { TransactionNumber: tn, total: tt };
     this.socket.emit('invoice', invoice);
     return this.http
       .post(
@@ -49,6 +51,7 @@ export class RestService {
         })
       )
       .subscribe();
+
   }
   // DISPENSER
   dispenser() {
@@ -63,13 +66,17 @@ export class RestService {
       )
       .subscribe();
   }
-  // Product Mode
+  // Product Mode ( in service, dep, out of service )
   heartbeat() {
     return this.http
       .get(
         Url.borneForHeartbeat)
-      .subscribe(this.data = data =>{
+      .subscribe(this.data = data => {
         console.log(data.ProductMode);
       });
+  }
+  deconnect() {
+    console.log('i a dan');
+    this.socket.close();
   }
 }

@@ -25,6 +25,9 @@ export class WsService {
     this.socket.on('CB', (res) => {
       this.observer.next(res.data);
     });
+    this.socket.on('incident', (res) => {
+      this.observer.next(res.data);
+    });
     return this.createObservable();
   }
   createObservable(): Observable<string> {
