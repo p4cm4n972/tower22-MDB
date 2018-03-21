@@ -143,7 +143,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
           this.total = 0;
           this.cart = 0;
         }
-        this.rest.checkCB();
         break;
       case 'Print CB OK':
         this.rest.dataticket();

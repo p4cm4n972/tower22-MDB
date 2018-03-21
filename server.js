@@ -115,7 +115,7 @@ io.on("connection", function (socket) {
     const dataticket = req.body;
     console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.TypeTicket));
     //PRINT TICKET
-    /*doc = new PDFDocument({
+    doc = new PDFDocument({
       size: [300]
     });
     doc.text('CARTE BANCAIRE', {
@@ -134,7 +134,7 @@ io.on("connection", function (socket) {
     doc.text(dataticket.TypeTicket);
     doc.text('A CONSERVER');
     doc.pipe(fs.createWriteStream("../BorneProduit/DataTicket/dataticket.pdf"));
-    doc.end();*/
+    doc.end();
     socket.emit("CB", {
       data: "CB"
     });
