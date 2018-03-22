@@ -91,19 +91,19 @@ io.on("connection", function (socket) {
     doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
     //doc.rect(doc.x, 155, 280, doc.y).stroke();
     doc.image('vision.png', 80, 530, 250);
-    doc.pipe(fs.createWriteStream("../../BorneProduit/Receipts/Receipt.pdf"));
+    doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
     doc.end();
   });
   // CHECK CB
   socket.on('checkCB', function(data) {
     request.post(
       "http://10.1.128:9010/ws/dataticket",{
-      json: data
+      json: dataq
       }
     )
   });
   // PRINT RECEIPT
-  socket.on('printreceipt', function(data) {
+  socket.on('printReceipt', function(data) {
     request.post(
       "http://10.1.1.128:9010/ws/dataticket", {json: data}
     )
