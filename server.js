@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const request = require('request');
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -93,7 +94,22 @@ io.on("connection", function (socket) {
     doc.pipe(fs.createWriteStream("../../BorneProduit/Receipts/Receipt.pdf"));
     doc.end();
   });
-  //STATUS
+  // CHECK CB
+  socket.on('checkCB', function(data) {
+    request.post(
+      "http://10.1.128:9010/ws/dataticket",{
+      json: data
+      }
+    )
+  });
+  // PRINT RECEIPT
+  socket.on('printreceipt', function(data) {
+    request.post(
+      "http://10.1.1.128:9010/ws/dataticket", {json: data}
+    )
+  })
+
+  // STATUS
   app.post("/ws/status", function (req, res) {
     console.log("serverSideSocket: ".green + JSON.stringify(req.body.Mode));
     socket.emit("clientdata", {

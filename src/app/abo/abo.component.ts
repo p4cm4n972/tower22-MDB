@@ -151,7 +151,7 @@ export class AboComponent implements OnInit {
         const location = this.location;
         const rest = this.rest;
         setTimeout( function() {
-          rest.deconnect();
+          delete this.socket;
           location.back();
         }, 5000);
         this.rest.heartbeat();

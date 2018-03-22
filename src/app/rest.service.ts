@@ -28,7 +28,12 @@ export class RestService {
   }
   // PRINT CB TICKET
   checkCB() {
-    return this.http.post(
+    this.socket.emit('checkCB', {
+    'HostId': 'CIEME_01',
+    'TicketType': 'CBTicket',
+    'TicketURL': 'BorneProduit/DataTicket/dataticket.pdf'
+  });
+    /*return this.http.post(
       Url.borneForDataticket,
       JSON.stringify({
         'HostId': 'CIEME_01',
@@ -36,12 +41,17 @@ export class RestService {
         'TicketURL': 'BorneProduit/DataTicket/dataticket.pdf'
       })
     )
-      .subscribe();
+      .subscribe();*/
   }
   // PRINT RECEIPT
   dataticket() {
     console.log('Print Ticket');
-    return this.http
+    this.socket.emit('printReceipt', {
+      'HostId': 'CIEME_01',
+      'TicketType': 'AppTicket',
+      'TicketURL': 'BorneProduit/Receipts/Receipt.pdf'
+    });
+    /*return this.http
       .post(
         Url.borneForDataticket,
         JSON.stringify({
@@ -50,7 +60,7 @@ export class RestService {
           'TicketURL': 'BorneProduit/Receipts/Receipt.pdf'
         })
       )
-      .subscribe();
+      .subscribe();*/
 
   }
   // DISPENSER
