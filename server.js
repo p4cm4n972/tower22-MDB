@@ -95,7 +95,7 @@ io.on("connection", function (socket) {
     doc.end();
     request.post(
       "http://10.1.1.128:9010/ws/payment",{
-        json: invoice
+        json: data
       }
     )
   });
