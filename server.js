@@ -96,6 +96,7 @@ io.on("connection", function (socket) {
   });
   // CHECK CB
   socket.on('checkCB', function(data) {
+    console.log('cb :' + data );
     request.post(
       "http://10.1.128:9010/ws/dataticket",{
       json: dataq
@@ -104,6 +105,8 @@ io.on("connection", function (socket) {
   });
   // PRINT RECEIPT
   socket.on('printReceipt', function(data) {
+    console.log('RECU :' + data );
+    
     request.post(
       "http://10.1.1.128:9010/ws/dataticket", {json: data}
     )
