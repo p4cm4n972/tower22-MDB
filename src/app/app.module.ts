@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // MATERIAL DESIGN BOOTSTRAP
@@ -38,9 +39,10 @@ const appRoutes: Routes = [
       { enableTracing: true, useHash: true }
     ),
     MDBBootstrapModules.forRoot(),
-    ToastModule.forRoot(),
+    ToastModule.forRoot({preventDuplicates: true}),
     BrowserModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [MDBSpinningPreloader, RestService, WsService, {provide: LocationStrategy, useClass: HashLocationStrategy} ],
   bootstrap: [AppComponent],

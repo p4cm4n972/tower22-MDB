@@ -150,7 +150,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        this.rest.deconnect();
+        delete this.socket;
         console.log('IS DISCONNECTED');
         this.location.back();
         break;

@@ -6,4 +6,3 @@ export const Url = {
     borneForDispenser: 'http://10.1.1.144:9010/ws/dispenser',
     borneForHeartbeat: 'http://10.1.1.144:9010/ws/heartbeat',
 };
-

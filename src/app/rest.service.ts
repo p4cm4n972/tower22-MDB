@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 
 @Injectable()
 export class RestService {
-  constructor(private http: HttpClient, private location: Location) { }
+  constructor(private http: HttpClient, private location: Location) {}
   public data;
   private socket: Socket;
   // CHECK OUT AMOUNT
@@ -76,7 +76,8 @@ export class RestService {
       });
   }
   deconnect() {
+    this.socket = socketIo(Url.server);
     console.log('i a dan');
-    this.socket.close();
+    this.socket.emit('disconnect', 'disconnect');
   }
 }

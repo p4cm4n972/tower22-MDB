@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const io = require("socket.io",{transports: ['websocket']})(server);
 //style console
 const colors = require('colors');
 
@@ -129,8 +129,8 @@ io.on("connection", function (socket) {
     });
     res.json("incident paiement");
   })
-  socket.on('disconnect', function () {
-    socket.disconnect();
+  socket.on('disconnect', function (data) {
     console.log('user disconnected');
+    delete this.socket;
   });
 });
