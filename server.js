@@ -93,6 +93,11 @@ io.on("connection", function (socket) {
     doc.image('vision.png', 80, 530, 250);
     doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
     doc.end();
+    request.post(
+      "http://10.1.1.128:9010/ws/payment",{
+        json: invoice
+      }
+    )
   });
   // CHECK CB
   socket.on('checkCB', function(data) {

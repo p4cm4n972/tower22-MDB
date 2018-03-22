@@ -16,7 +16,7 @@ export class RestService {
     this.socket = socketIo(Url.server);
     const invoice = { TransactionNumber: tn, total: tt };
     this.socket.emit('invoice', invoice);
-    return this.http
+    /*return this.http
       .post(
         Url.borneForPayment,
         JSON.stringify({
@@ -24,7 +24,7 @@ export class RestService {
           TransactionNumber: tn.toString()
         })
       )
-      .subscribe();
+      .subscribe();*/
   }
   // PRINT CB TICKET
   checkCB() {
