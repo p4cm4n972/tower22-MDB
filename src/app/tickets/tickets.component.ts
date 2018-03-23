@@ -154,6 +154,11 @@ export class TicketsComponent implements OnInit, OnDestroy {
       case 'Print CB OK':
         if (this.trackerIncident === 0) {
           this.incident();
+          for (let i = 0; i < this.tickets.length; i++) {
+            this.tickets[i].qty = 0;
+            this.total = 0;
+            this.cart = 0;
+          }
           this.location.back();
         } else {
           this.rest.dataticket();
