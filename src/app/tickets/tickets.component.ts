@@ -154,6 +154,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
             this.total = 0;
             this.cart = 0;
           }
+        this.rest.deconnect();
           this.location.back();
         } else {
           this.rest.dataticket();
@@ -162,11 +163,9 @@ export class TicketsComponent implements OnInit, OnDestroy {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
+        this.rest.deconnect();
         console.log('IS DISCONNECTED');
         this.location.back();
-        break;
-      case 'Dispenser OK':
-        this.dispenserModal.show();
         break;
       case 'incident':
         this.trackerIncident = 0;

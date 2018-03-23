@@ -166,7 +166,8 @@ io.on("connection", function (socket) {
     res.json(req.body.Acknowledge);
   });
   
-  /*socket.on('disconnect', function (data) {
+  socket.on('disconnect', function (data) {
+    socket.disconnect();
     console.log('user disconnected');
-  });*/
+  });
 });
