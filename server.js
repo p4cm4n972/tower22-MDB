@@ -5,9 +5,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const server = require("http").createServer(app);
-const io = require("socket.io", {
-  transports: ['websocket']
-})(server);
+const io = require("socket.io")(server);
 //style console
 const colors = require('colors');
 
@@ -153,6 +151,8 @@ io.on("connection", function (socket) {
       io.emit("incident", {
         data: "incident"
       });
+    } else {
+      console.log(dataticket.Status);
     }
     res.json(dataticket.Status);
   });
@@ -166,8 +166,7 @@ io.on("connection", function (socket) {
     res.json(req.body.Acknowledge);
   });
   
-  socket.on('disconnect', function (data) {
+  /*socket.on('disconnect', function (data) {
     console.log('user disconnected');
-    delete this.socket;
-  });
+  });*/
 });
