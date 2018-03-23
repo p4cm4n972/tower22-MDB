@@ -151,12 +151,13 @@ export class TicketsComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Print CB OK':
-      if (this.trackerIncident === 1) {
-        this.incident();
-        this.location.back();
-      } else{
+        if (this.trackerIncident === 1) {
+          this.incident();
+          this.location.back();
+        } else {
           this.rest.dataticket();
-        this.receiptInfo();}
+          this.receiptInfo();
+        }
         break;
       case 'Print DATA OK':
         this.receiptSuccess();

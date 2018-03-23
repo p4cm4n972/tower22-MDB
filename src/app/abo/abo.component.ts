@@ -26,7 +26,8 @@ export class AboComponent implements OnInit {
   public sub: Subscription;
   public data;
   private socket: Socket;
-  
+  public trackerIncident: number = 0;
+
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
@@ -144,24 +145,30 @@ export class AboComponent implements OnInit {
         }
         break;
       case 'Print CB OK':
-        this.rest.dataticket();
-        this.receiptInfo();
+        if (this.trackerIncident === 1) {
+          this.incident();
+          this.location.back();
+        } else {
+          this.rest.dataticket();
+          this.receiptInfo();
+        }
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
         this.rest.dispenser();
         break;
-        case 'Dispenser OK':
+      case 'Dispenser OK':
         this.dispenserModal.show();
         const location = this.location;
         const rest = this.rest;
-        setTimeout( function() {
+        setTimeout(function () {
           delete this.socket;
           location.back();
         }, 5000);
         this.rest.heartbeat();
         break;
-        case 'incident':
+      case 'incident':
+        this.trackerIncident++;
         this.CBModal.hide();
         this.contentModal.hide();
         this.incident();
