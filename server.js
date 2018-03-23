@@ -5,7 +5,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const server = require("http").createServer(app);
-const io = require("socket.io",{transports: ['websocket']})(server);
+const io = require("socket.io", {
+  transports: ['websocket']
+})(server);
 //style console
 const colors = require('colors');
 
@@ -56,7 +58,7 @@ app.post("/api/invoice", function (req, res) {
   const data = req.body;
   console.log('invoice :' + JSON.stringify(data));
   console.log('total :' + data.AmountToPay);
-  console.log(typeof(data.AmountToPay));
+  console.log(typeof (data.AmountToPay));
   doc = new PDFDocument({
     size: [300, 600]
   });
@@ -86,17 +88,47 @@ app.post("/api/invoice", function (req, res) {
   doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
   //doc.rect(doc.x, 155, 280, doc.y).stroke();
   doc.image('vision.png', 80, 530, 250);
-  doc.pipe(fs.createWriteStream("/home/madele/BorneProduit/Receipts/Receipt.pdf"));
+  doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
   doc.end();
   request.post(
-    "http://10.1.1.128:9010/ws/payment",{
+    "http://10.1.1.128:9010/ws/payment", {
       json: {
         "AmountToPay": (data.AmountToPay),
-        "TransactionNumber":(data.TransactionNumber)
+        "TransactionNumber": (data.TransactionNumber)
       }
     }
   )
   res.json('invoice :' + req.body);
+})
+// API CHECK CB
+app.post("/api/dataticket", function (req, res) {
+  const data = req.body;
+  console.log('dataticket :' + JSON.stringify(data));
+  request.post(
+    "http://10.1.128:9010/ws/dataticket", {
+      json: dataq
+    }
+  )
+})
+// API RECEIPT
+app.post("/api/receipt", function (req, res) {
+  const data = req.body;
+  console.log('receipt :' + JSON.stringify(data));
+  request.post(
+    "http://10.1.1.128:9010/ws/dataticket", {
+      json: data
+    }
+  )
+})
+// API DISPENSER
+app.post("/api/dispenser", function( req, res) {
+  const data = req.body;
+  console.log('dispenser :' + JSON.stringify(data));
+  request.post(
+    "http://10.1.1.128:9010/ws/dispenser", {
+      json: data
+    }
+  )
 })
 //EXPRESS SERVER
 app.set("port", process.env.PORT || 5000);
@@ -107,31 +139,22 @@ server.listen(app.get("port"), function () {
 //SOCKET CONNECTION
 io.on("connection", function (socket) {
   console.log(`Socket ${socket.id} added`);
-  // CHECK CB
-  socket.on('checkCB', function(data) {
-    console.log('cb :' + data );
-    request.post(
-      "http://10.1.128:9010/ws/dataticket",{
-      json: dataq
-      }
-    )
-  });
-  // PRINT RECEIPT
-  socket.on('printReceipt', function(data) {
-    console.log('RECU :' + data );
-    
-    request.post(
-      "http://10.1.1.128:9010/ws/dataticket", {json: data}
-    )
-  })
-
-  // STATUS
-  app.post("/ws/status", function (req, res) {
-    console.log("serverSideSocket: ".green + JSON.stringify(req.body.Mode));
-    socket.emit("clientdata", {
-      data: req.body
-    });
-    res.json("STATUS: " + req.body.Mode);
+  //PAYMENT
+  app.post("/ws/receipt", function (req, res) {
+    const dataticket = req.body;
+    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.Status));
+    if (dataticket.Status === "Transaction Accepted") {
+      console.log("TRANSACTION ACEPTED");
+      io.emit("CB", {
+        data: "CB"
+      });
+    } else if (dataticket.Status === "Transaction Refused") {
+      console.log("TRANSACTION REFUSED");
+      io.emit("incident", {
+        data: "incident"
+      });
+    }
+    res.json(dataticket.Status);
   });
   //PRINT
   app.post("/ws/cmdack", function (req, res) {
@@ -142,20 +165,7 @@ io.on("connection", function (socket) {
     });
     res.json(req.body.Acknowledge);
   });
-  //PAYMENT
-  app.post("/ws/receipt", function (req, res) {
-    const dataticket = req.body;
-    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.Status));
-    if (dataticket.Status === "Transaction Accepted") {
-      console.log("TRANSACTION ACEPTED");      
-      io.emit("CB", {
-      data: "CB"
-    });} else if (dataticket.Status === "Transaction Refused") {
-      console.log("TRANSACTION REFUSED");
-      io.emit("incident", { data : "incident"});
-    }
-    res.json("info CB");
-  });
+  
   socket.on('disconnect', function (data) {
     console.log('user disconnected');
     delete this.socket;

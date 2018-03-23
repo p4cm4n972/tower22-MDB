@@ -16,7 +16,7 @@ export class RestService {
     console.log(tt);
     return this.http
       .post(
-        'http://localhost:5000/api/invoice',
+        'http://10.1.1.103:5000/api/invoice',
         {
           AmountToPay: tt,
           TransactionNumber: tn
@@ -26,39 +26,29 @@ export class RestService {
   }
   // PRINT CB TICKET
   checkCB() {
-    this.socket.emit('checkCB', {
-    'HostId': 'CIEME_01',
-    'TicketType': 'CBTicket',
-    'TicketURL': 'BorneProduit/DataTicket/dataticket.pdf'
-  });
-    /*return this.http.post(
-      Url.borneForDataticket,
-      JSON.stringify({
+      return this.http.post(
+      'http://10.1.1.103:5000/api/dataticket',
+      {
         'HostId': 'CIEME_01',
         'TicketType': 'CBTicket',
         'TicketURL': 'BorneProduit/DataTicket/dataticket.pdf'
-      })
+      }
     )
-      .subscribe();*/
+      .subscribe();
   }
   // PRINT RECEIPT
   dataticket() {
     console.log('Print Ticket');
-    this.socket.emit('printReceipt', {
-      'HostId': 'CIEME_01',
-      'TicketType': 'AppTicket',
-      'TicketURL': 'BorneProduit/Receipts/Receipt.pdf'
-    });
-    /*return this.http
+    return this.http
       .post(
-        Url.borneForDataticket,
+        'http://10.1.1.103:5000/api/receipt',
         JSON.stringify({
           'HostId': 'CIEME_01',
           'TicketType': 'AppTicket',
           'TicketURL': 'BorneProduit/Receipts/Receipt.pdf'
         })
       )
-      .subscribe();*/
+      .subscribe();
 
   }
   // DISPENSER
@@ -66,7 +56,7 @@ export class RestService {
     console.log('Dispenser');
     return this.http
       .post(
-        Url.borneForDispenser,
+        'http://10.1.1.103:5000/api/dispenser',
         JSON.stringify({
           'HostId': 'CIEME_01',
           'Cmd': 'Distribute'
