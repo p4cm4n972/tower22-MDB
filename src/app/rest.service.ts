@@ -65,14 +65,14 @@ export class RestService {
       .subscribe();
   }
   // Product Mode ( in service, dep, out of service )
-  heartbeat() {
+  /*heartbeat() {
     return this.http
       .get(
         Url.borneForHeartbeat)
       .subscribe(this.data = data => {
         console.log(data.ProductMode);
       });
-  }
+  }*/
   deconnect() {
     this.socket = socketIo(Url.server);
     console.log('i a dan');

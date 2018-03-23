@@ -162,11 +162,9 @@ export class AboComponent implements OnInit {
       case 'Dispenser OK':
         this.dispenserModal.show();
         const location = this.location;
-        const rest = this.rest;
         setTimeout(function () {
           location.back();
         }, 5000);
-        this.rest.heartbeat();
         break;
       case 'incident':
       this.trackerIncident = 0;
