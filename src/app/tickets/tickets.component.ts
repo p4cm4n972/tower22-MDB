@@ -26,6 +26,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
   public cart: number = 0;
   public total: number = 0;
   public inChart: boolean = true;
+  public trackerIncident: number = 0;
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
@@ -53,7 +54,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
   // ALERT: INCIDENT PAIEMENT
   incident() {
     const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
-    this.toast.error('INCIDENT PAIEMENT, TRANSACTION ANNULÉE', options);
+    this.toast.error('INCIDENT PAIEMENT', 'TRANSACTION ANNULÉE', options);
   }
   // AJOUT tickets
   add(ticket): void {
@@ -150,8 +151,12 @@ export class TicketsComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Print CB OK':
-        this.rest.dataticket();
-        this.receiptInfo();
+      if (this.trackerIncident === 1) {
+        this.incident();
+        this.location.back();
+      } else{
+          this.rest.dataticket();
+        this.receiptInfo();}
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
@@ -163,10 +168,9 @@ export class TicketsComponent implements OnInit, OnDestroy {
         this.dispenserModal.show();
         break;
       case 'incident':
+        this.trackerIncident++;
         this.CBModal.hide();
         this.contentModal.hide();
-        this.incident();
-        this.location.back();
         break;
     }
   }
