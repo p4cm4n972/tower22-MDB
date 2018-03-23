@@ -137,6 +137,8 @@ export class AboComponent implements OnInit {
       case 'CB':
         this.CBModal.hide();
         this.paiementSuccess();
+        this.trackerIncident = 1;
+        
         // RESET PANIER
         for (let i = 0; i < this.abos.length; i++) {
           this.abos[i].qty = 0;
@@ -145,7 +147,7 @@ export class AboComponent implements OnInit {
         }
         break;
       case 'Print CB OK':
-        if (this.trackerIncident === 1) {
+        if (this.trackerIncident === 0) {
           this.incident();
           this.location.back();
         } else {
@@ -168,7 +170,7 @@ export class AboComponent implements OnInit {
         this.rest.heartbeat();
         break;
       case 'incident':
-        this.trackerIncident++;
+      this.trackerIncident = 0;
         this.CBModal.hide();
         this.contentModal.hide();
         this.incident();
