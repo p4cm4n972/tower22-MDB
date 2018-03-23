@@ -143,6 +143,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
       case 'CB':
         this.CBModal.hide();
         this.paiementSuccess();
+        this.trackerIncident = 1;
         // RESET PANIER
         for (let i = 0; i < this.tickets.length; i++) {
           this.tickets[i].qty = 0;
@@ -151,7 +152,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Print CB OK':
-        if (this.trackerIncident === 1) {
+        if (this.trackerIncident === 0) {
           this.incident();
           this.location.back();
         } else {
@@ -169,7 +170,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
         this.dispenserModal.show();
         break;
       case 'incident':
-        this.trackerIncident++;
+        this.trackerIncident = 0;
         this.CBModal.hide();
         this.contentModal.hide();
         break;
