@@ -50,6 +50,11 @@ export class TicketsComponent implements OnInit, OnDestroy {
     const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.info('Merci de récuperer vos tickets', 'MERCI ET A BIENTOT', options);
   }
+  // ALERT: INCIDENT PAIEMENT
+  incident() {
+    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
+    this.toast.error('INCIDENT PAIEMENT, TRANSACTION ANNULÉE', options);
+  }
   // AJOUT tickets
   add(ticket): void {
     switch (ticket) {
@@ -160,7 +165,9 @@ export class TicketsComponent implements OnInit, OnDestroy {
       case 'incident':
         this.CBModal.hide();
         this.contentModal.hide();
-        this.incidentModal.show();
+        this.incident();
+        this.location.back();
+        break;
     }
   }
 

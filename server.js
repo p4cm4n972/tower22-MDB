@@ -140,11 +140,13 @@ io.on("connection", function (socket) {
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
     const dataticket = req.body;
-    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.TypeTicket));
-    
-    socket.emit("CB", {
+    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.status));
+    if (dataticket.status === "Transaction Accepted")
+    {socket.emit("CB", {
       data: "CB"
-    });
+    });} else if (dataticket.status === "Transaction Refused") {
+      socket.emit("incident", { data : "incident"});
+    }
     res.json("info CB");
   });
   // INCIDENT PAIEMENT

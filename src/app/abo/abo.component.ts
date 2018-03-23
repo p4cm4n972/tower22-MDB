@@ -46,6 +46,11 @@ export class AboComponent implements OnInit {
     const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.info('Merci de récuperer vos ticket', 'MERCI ET A BIENTOT', options);
   }
+  // ALERT: INCIDENT PAIEMENT
+  incident() {
+    const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
+    this.toast.error('INCIDENT PAIEMENT, TRANSACTION ANNULÉE', options);
+  }
   add(abo): void {
     switch (abo) {
       // ADULTE
@@ -155,6 +160,12 @@ export class AboComponent implements OnInit {
           location.back();
         }, 5000);
         this.rest.heartbeat();
+        break;
+        case 'incident':
+        this.CBModal.hide();
+        this.contentModal.hide();
+        this.incident();
+        this.location.back();
         break;
     }
   }
