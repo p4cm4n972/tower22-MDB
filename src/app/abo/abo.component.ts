@@ -179,7 +179,6 @@ export class AboComponent implements OnInit {
       console.log(data);
       this.status(data);
     });
-    this.trackerIncident = 0;
   }
   // CONDITION RETOUR MENU
   onBack(): void {

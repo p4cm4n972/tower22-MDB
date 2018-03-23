@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
+
+sockets = new Set();
 //style console
 const colors = require('colors');
 
@@ -167,7 +169,7 @@ io.on("connection", function (socket) {
   });
   
   socket.on('disconnect', function (data) {
-    socket.disconnect();
+    sockets.delete(socket);
     console.log('user disconnected');
   });
 });
