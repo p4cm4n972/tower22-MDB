@@ -14,8 +14,7 @@ export class WsService {
   observer: Observer<string>;
 
   getStatus(): Observable<string> {
-    console.log('GET');
-    this.socket = socketIo(Url.server);
+
     this.socket.on('clientdata', (res) => {
       this.observer.next(res.data);
     });
