@@ -138,7 +138,6 @@ export class AboComponent implements OnInit {
         this.CBModal.hide();
         this.paiementSuccess();
         this.trackerIncident = 1;
-        
         // RESET PANIER
         for (let i = 0; i < this.abos.length; i++) {
           this.abos[i].qty = 0;

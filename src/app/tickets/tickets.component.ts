@@ -130,12 +130,11 @@ export class TicketsComponent implements OnInit, OnDestroy {
   }
   // DEBUT TRANSACTION ENVOIE INFOS (n° transaction, montant total)
   payer(total) {
-    console.log(this.total);
     this.contentModal.hide();
     this.incidentModal.hide();
     this.CBModal.show();
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
-    this.rest.checkOut(TransactionNumber, this.total);
+    this.rest.checkOut(TransactionNumber.toString(), (this.total * 100).toString());
   }
   // WEB SOCKET EVENT LISTENER STATUS
   status(data) {

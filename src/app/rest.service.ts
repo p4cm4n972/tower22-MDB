@@ -13,18 +13,16 @@ export class RestService {
   private socket: Socket;
   // CHECK OUT AMOUNT
   checkOut(tn, tt) {
-    this.socket = socketIo(Url.server);
-    const invoice = { TransactionNumber: tn, total: tt };
-    this.socket.emit('invoice', invoice);
-    /*return this.http
+    console.log(tt);
+    return this.http
       .post(
-        Url.borneForPayment,
-        JSON.stringify({
-          AmountToPay: (tt * 100).toString(),
-          TransactionNumber: tn.toString()
-        })
+        'http://localhost:5000/api/invoice',
+        {
+          AmountToPay: tt,
+          TransactionNumber: tn
+        }
       )
-      .subscribe();*/
+      .subscribe();
   }
   // PRINT CB TICKET
   checkCB() {

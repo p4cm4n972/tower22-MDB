@@ -51,6 +51,53 @@ app.post("/ws/heartbeat", function (req, res) {
   });
   res.json("heartbeat: " + req.body.Mode);
 });
+// API INVOICE
+app.post("/api/invoice", function (req, res) {
+  const data = req.body;
+  console.log('invoice :' + JSON.stringify(data));
+  console.log('total :' + data.AmountToPay);
+  console.log(typeof(data.AmountToPay));
+  doc = new PDFDocument({
+    size: [300, 600]
+  });
+  doc.image('logo.png', 20, 15, 250);
+  doc.moveDown();
+  doc.text('7, rue d\'Alembert', 20, 100);
+  doc.text('ZAC de la Noue Rousseau');
+  doc.text('Techniparc');
+  doc.text('91240 Saint Michel sur Orge');
+  doc.moveDown();
+  doc.fontSize(22).text('1 TICKET PASS', {
+    align: 'center'
+  });
+  doc.fontSize(22).text('------------', {
+    align: 'center'
+  });
+  doc.moveDown();
+  doc.fontSize(14).text("Transaction n° :" + data.TransactionNumber);
+  doc.fontSize(18).text("Prix TTC : " + data.AmountToPay + ',00€', {
+    align: 'center'
+  });
+  doc.moveDown();
+  doc.text("TVA 10.0%            : " + ((data.AmountToPay) / 10) + '€');
+  doc.text("Montant total HT   : " + ((data.AmountToPay) - ((data.AmountToPay) / 10)) + '€');
+  doc.text("Montant total TTC : " + (data.AmountToPay) + ',00€');
+  doc.moveDown();
+  doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
+  //doc.rect(doc.x, 155, 280, doc.y).stroke();
+  doc.image('vision.png', 80, 530, 250);
+  doc.pipe(fs.createWriteStream("/home/madele/BorneProduit/Receipts/Receipt.pdf"));
+  doc.end();
+  request.post(
+    "http://10.1.1.128:9010/ws/payment",{
+      json: {
+        "AmountToPay": (data.AmountToPay),
+        "TransactionNumber":(data.TransactionNumber)
+      }
+    }
+  )
+  res.json('invoice :' + req.body);
+})
 //EXPRESS SERVER
 app.set("port", process.env.PORT || 5000);
 server.listen(app.get("port"), function () {
@@ -60,48 +107,6 @@ server.listen(app.get("port"), function () {
 //SOCKET CONNECTION
 io.on("connection", function (socket) {
   console.log(`Socket ${socket.id} added`);
-  socket.on("invoice", function (data) {
-    console.log(data);
-    doc = new PDFDocument({
-      size: [300, 600]
-    });
-    doc.image('logo.png', 20, 15, 250);
-    doc.moveDown();
-    doc.text('7, rue d\'Alembert', 20, 100);
-    doc.text('ZAC de la Noue Rousseau');
-    doc.text('Techniparc');
-    doc.text('91240 Saint Michel sur Orge');
-    doc.moveDown();
-    doc.fontSize(22).text('1 TICKET PASS', {
-      align: 'center'
-    });
-    doc.fontSize(22).text('------------', {
-      align: 'center'
-    });
-    doc.moveDown();
-    doc.fontSize(14).text("Transaction n° :" + data.TransactionNumber);
-    doc.fontSize(18).text("Prix TTC : " + data.total + ',00€', {
-      align: 'center'
-    });
-    doc.moveDown();
-    doc.text("TVA 10.0%            : " + ((data.total) / 10) + '€');
-    doc.text("Montant total HT   : " + ((data.total) - ((data.total) / 10)) + '€');
-    doc.text("Montant total TTC : " + (data.total) + ',00€');
-    doc.moveDown();
-    doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
-    //doc.rect(doc.x, 155, 280, doc.y).stroke();
-    doc.image('vision.png', 80, 530, 250);
-    doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
-    doc.end();
-    request.post(
-      "http://10.1.1.128:9010/ws/payment",{
-        json: {
-          "AmountToPay": (data.total * 100).toString(),
-          "TransactionNumber":(data.TransactionNumber).toString()
-        }
-      }
-    )
-  });
   // CHECK CB
   socket.on('checkCB', function(data) {
     console.log('cb :' + data );
