@@ -8,10 +8,7 @@ import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
 import { Router } from '@angular/router';
-// SOCKET IO
-import * as socketIo from 'socket.io-client';
-import { Socket } from '../ws';
-import { Url } from '../../app/app-config';
+
 
 @Component({
   selector: 'app-tickets',
@@ -30,7 +27,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
-  private socket: Socket;
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
@@ -166,7 +162,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        delete this.socket;
         console.log('IS DISCONNECTED');
         this.location.back();
         break;
@@ -190,7 +185,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
     this.trackerIncident = 0;
   }
   ngOnDestroy() {
-    this.sub.unsubscribe();
   }
   // CONDITION RETOUR MENU
   onBack(): void {

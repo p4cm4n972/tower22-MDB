@@ -7,10 +7,7 @@ import { Abo } from '../abo/abo';
 import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
-// SOCKET IO
-import * as socketIo from 'socket.io-client';
-import { Socket } from '../ws';
-import { Url } from '../../app/app-config';
+
 
 @Component({
   selector: 'app-abo',
@@ -25,7 +22,6 @@ export class AboComponent implements OnInit {
   public abos = ABOS;
   public sub: Subscription;
   public data;
-  private socket: Socket;
   public trackerIncident: number = 0;
 
   @ViewChild('style') public contentModal;
@@ -168,7 +164,6 @@ export class AboComponent implements OnInit {
         const location = this.location;
         const rest = this.rest;
         setTimeout(function () {
-          delete this.socket;
           location.back();
         }, 5000);
         this.rest.heartbeat();
@@ -189,7 +184,6 @@ export class AboComponent implements OnInit {
       this.status(data);
     });
     this.trackerIncident = 0;
-    
   }
   // CONDITION RETOUR MENU
   onBack(): void {
