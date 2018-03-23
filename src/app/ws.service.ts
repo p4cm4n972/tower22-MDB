@@ -26,8 +26,6 @@ export class WsService {
       this.observer.next(res.data);
     });
     this.socket.on('incident', (res) => {
-      console.log(res.data);
-      alert(res.data);
       this.observer.next(res.data);
     });
     return this.createObservable();
