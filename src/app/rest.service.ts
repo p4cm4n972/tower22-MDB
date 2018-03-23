@@ -42,11 +42,11 @@ export class RestService {
     return this.http
       .post(
         'http://10.1.1.103:5000/api/receipt',
-        JSON.stringify({
+        {
           'HostId': 'CIEME_01',
           'TicketType': 'AppTicket',
           'TicketURL': 'BorneProduit/Receipts/Receipt.pdf'
-        })
+        }
       )
       .subscribe();
 
@@ -57,10 +57,10 @@ export class RestService {
     return this.http
       .post(
         'http://10.1.1.103:5000/api/dispenser',
-        JSON.stringify({
+      {
           'HostId': 'CIEME_01',
           'Cmd': 'Distribute'
-        })
+        }
       )
       .subscribe();
   }
