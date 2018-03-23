@@ -182,6 +182,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
       console.log(data);
       this.status(data);
     });
+    this.trackerIncident = 0;
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
