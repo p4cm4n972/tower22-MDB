@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
 import { Subscription } from 'rxjs/Subscription';
 import { TICKETS } from '../tickets/mock-ticket';
 import { Ticket } from '../tickets/ticket';
@@ -7,7 +6,7 @@ import { Ticket } from '../tickets/ticket';
 import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +17,7 @@ import { Router } from '@angular/router';
 
 export class TicketsComponent implements OnInit, OnDestroy {
 
-  constructor(private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) {
+  constructor(private router: Router, public rest: RestService, private toast: ToastService, private ws: WsService) {
   }
   public cart: number = 0;
   public total: number = 0;
@@ -155,7 +154,8 @@ export class TicketsComponent implements OnInit, OnDestroy {
             this.cart = 0;
           }
         this.rest.deconnect();
-          this.location.back();
+        this.router.navigate(['/home']);
+
         } else {
           this.rest.dataticket();
           this.receiptInfo();
@@ -165,7 +165,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
         this.receiptSuccess();
         this.rest.deconnect();
         console.log('IS DISCONNECTED');
-        this.location.back();
+        this.router.navigate(['/home']);
         break;
       case 'incident':
         this.trackerIncident = 0;
@@ -187,7 +187,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
   // CONDITION RETOUR MENU
   onBack(): void {
     if (this.total === 0) {
-      this.location.back();
+      this.router.navigate(['/home']);
     } else {
       this.backModal.show();
     }
@@ -199,6 +199,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
       this.total = 0;
       this.cart = 0;
     }
-    this.location.back();
+    this.router.navigate(['/home']);
   }
 }

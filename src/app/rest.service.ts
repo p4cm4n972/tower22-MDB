@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule, Router } from '@angular/router';
 import * as socketIo from 'socket.io-client';
 import { Socket } from './ws';
 import { Url } from '../app/app-config';
-import { Location } from '@angular/common';
 
 
 @Injectable()
 export class RestService {
-  constructor(private http: HttpClient, private location: Location) {}
+  constructor(private http: HttpClient,private router: Router) {}
   public data;
   private socket: Socket;
   // CHECK OUT AMOUNT

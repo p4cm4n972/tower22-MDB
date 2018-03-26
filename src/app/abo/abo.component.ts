@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ABOS } from '../abo/mock-abo';
 import { Abo } from '../abo/abo';
@@ -16,7 +16,7 @@ import { WsService } from '../ws.service';
 })
 export class AboComponent implements OnInit {
 
-  constructor(private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) { }
+  constructor(private router: Router, public rest: RestService, private toast: ToastService, private ws: WsService) { }
   public abo: number = 0;
   public total: number = 0;
   public abos = ABOS;
@@ -149,7 +149,7 @@ export class AboComponent implements OnInit {
             this.total = 0;
             this.abo = 0;
           }
-          this.location.back();
+          this.router.navigate(['/home']);
         } else {
           this.rest.dataticket();
           this.receiptInfo();
@@ -162,14 +162,14 @@ export class AboComponent implements OnInit {
       case 'Dispenser OK':
         this.dispenserModal.show();
         this.rest.deconnect();
-          this.location.back();
+          this.router.navigate(['/home']);
         break;
       case 'incident':
       this.trackerIncident = 0;
         this.CBModal.hide();
         this.contentModal.hide();
         this.incident();
-        this.location.back();
+        this.router.navigate(['/home']);
         break;
     }
   }
@@ -183,7 +183,7 @@ export class AboComponent implements OnInit {
   // CONDITION RETOUR MENU
   onBack(): void {
     if (this.total === 0) {
-      this.location.back();
+      this.router.navigate(['/home']);
     } else {
       this.backModal.show();
     }
@@ -195,6 +195,6 @@ export class AboComponent implements OnInit {
       this.total = 0;
       this.abo = 0;
     }
-    this.location.back();
+    this.router.navigate(['/home']);
   }
 }
