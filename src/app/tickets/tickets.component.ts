@@ -155,7 +155,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
             this.total = 0;
             this.cart = 0;
           }
-          this.rest.deconnect();
+          // this.rest.deconnect();
           this.router.navigate(['/home']);
 
         } else {
@@ -165,8 +165,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        this.rest.deconnect();
-        console.log('IS DISCONNECTED');
+        // this.rest.deconnect();
         this.router.navigate(['/home']);
         break;
       case 'incident':

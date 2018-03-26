@@ -161,7 +161,7 @@ export class AboComponent implements OnInit {
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
-        this.rest.deconnect();
+        // this.rest.deconnect();
           this.router.navigate(['/home']);
         break;
       case 'incident':
