@@ -28,7 +28,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
   public sub: Subscription;
   public data;
   // PASS
-  public pass: number = 0;
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
@@ -156,8 +155,8 @@ export class TicketsComponent implements OnInit, OnDestroy {
             this.total = 0;
             this.cart = 0;
           }
-        this.rest.deconnect();
-        this.router.navigate(['/home']);
+          this.rest.deconnect();
+          this.router.navigate(['/home']);
 
         } else {
           this.rest.dataticket();
@@ -184,12 +183,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
       console.log(data);
       this.status(data);
     });
-    if (this.pass === 4) {
-      window.location.reload();
-    } else {
-      this.pass++;
-    }
-
   }
   ngOnDestroy() {
   }
