@@ -74,8 +74,10 @@ export class RestService {
       });
   }*/
   deconnect() {
-    this.socket = socketIo(Url.server);
-    console.log('i a dan');
-    this.socket.emit('disconnect', 'disconnect');
+    return this.http
+      .post(
+        'http://10.1.1.102:5000/ws/disconnect', 'disconnect'
+      )
+      .subscribe();
   }
 }

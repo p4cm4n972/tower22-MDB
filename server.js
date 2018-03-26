@@ -7,7 +7,6 @@ const cors = require("cors");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
-const clients = {};
 //style console
 const colors = require('colors');
 
@@ -88,7 +87,7 @@ app.post("/api/invoice", function (req, res) {
   doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
   //doc.rect(doc.x, 155, 280, doc.y).stroke();
   doc.image('vision.png', 80, 530, 250);
-  doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
+  doc.pipe(fs.createWriteStream("/home/madele/BorneProduit/Receipts/Receipt.pdf"));
   doc.end();
   request.post(
     "http://10.1.1.128:9010/ws/payment", {
@@ -139,7 +138,6 @@ server.listen(app.get("port"), function () {
 //SOCKET CONNECTION
 io.on("connection", function (socket) {
   console.log(`Socket ${socket.id} added`);
-  clients[socket.id] = socket;
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
     const dataticket = req.body;
@@ -168,9 +166,11 @@ io.on("connection", function (socket) {
     });
     res.json(req.body.Acknowledge);
   });
-  
+  app.post('/ws/disconnect', function (req, res) {
+    socket.emit('disconnect','disconnect');
+  })
   socket.on('disconnect', function (data) {
-    delete clients[socket.id];
-    console.log('user disconnected');
+    delete socket;
+    console.log(`SERVER ${socket.id} +  'user disconnected`);
   });
 });
