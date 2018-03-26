@@ -11,7 +11,7 @@
     <p class="section-description"></p>
 
     <!--Grid row-->
-    <div class="row">
+    <div class="row" >
       <!--Grid column-->
       <div class="col-lg-2 col-md-12 mb-r">
         <!--Pricing card-->
@@ -36,13 +36,13 @@
               </li>
             </ul>
 
-            <button class="mb-3 mt-3 btn btn-lg aqua-gradient btn-rounded waves-light" mdbRippleRadius>AJOUTER PANIER</button>
+            <button class="mb-3 mt-3 btn btn-lg aqua-gradient btn-rounded waves-light" mdbRippleRadius >AJOUTER PANIER</button>
           </div>
           <!--Features-->
 
         </div>
         <!--Pricing card-->
-        <!--Grid column-->
+      <!--Grid column-->
       </div>
       <!--Grid column-->
       <div class="col-lg-2 col-md-12 mb-r">
@@ -113,188 +113,150 @@
 
       <!--CART ROW-->
       <div class="col-lg-6 col-md-12 mb-r">
-        <!--Pricing card-->
-        <div class="card pricing-card white-text">
-          <!--Price-->
-          <div class="header elegant-color">
-            <h4>VOTRE PANIER
-              <div class="chip green" *ngIf="cart !== 0">{{cart}}</div>
-            </h4>
-            <div class="chip yellow font-weight-bold mx-auto" *ngIf="total !== 0">
-              <h2>{{total}},00 €</h2>
+          <!--Pricing card-->
+          <div class="card pricing-card white-text">
+            <!--Price-->
+            <div class="header elegant-color">
+              <h4>VOTRE PANIER <div class="chip green" *ngIf="cart !== 0">{{cart}}</div></h4>
+              <div class="chip yellow font-weight-bold mx-auto" *ngIf="total !== 0"><h2>{{total}},00 €</h2></div>
             </div>
+            <!--Price-->
+  
+            <!--Features-->
+            <!--PANIER-->
+            <div class="card-body striped purple-striped card-background heading px-5" >
+              <h1 class="my-4" *ngIf="cart === 0">Votre panier est vide </h1>
+              <ul *ngIf="cart !== 0" >
+                <li *ngIf="tickets[0].qty !== 0">
+                  <p class="mt-1" >
+                    Ticket(s): {{tickets[0].name}}</p>
+                    <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('adulte')"><i class="fa fa-2x fa-minus"></i></button>
+                    <div class="chip peach-gradient w-10"><p class="font-weight-bold" >{{tickets[0].qty}}</p></div>
+                    <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("adulte")'><i class="fa fa-2x fa-plus"></i></button>
+                </li>
+                <li *ngIf="tickets[1].qty !== 0">
+                    <p class="mt-1" >Ticket(s): {{tickets[1].name}}</p>
+                    <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('enfant')"><i class="fa fa-2x fa-minus"></i></button>
+                    <div class="chip aqua-gradient w-10"><p class="font-weight-bold" >{{tickets[1].qty}}</p></div>
+                    <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("enfant")'><i class="fa fa-2x fa-plus"></i></button>
+                </li>
+                <li *ngIf="tickets[2].qty !== 0">
+                    <p class="mt-1" >Ticket(s): {{tickets[2].name}}</p>
+                    <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('groupe')"><i class="fa fa-2x fa-minus"></i></button>
+                    <div class="chip purple-gradient w-10"><p class="font-weight-bold" >{{tickets[2].qty}}</p></div>
+                    <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("groupe")'><i class="fa fa-2x fa-plus"></i></button>
+                </li>
+              </ul>
+  
+              <button class="mb-3 mt-3 btn btn-lg w-100 btn-rounded waves-light" mdbRippleRadius [disabled]="cart === 0" [style.background]="cart === 0 ? '#ffbb33' : '#00C851'" (click)="style.show()">PAYER</button>
+            </div>
+            <!--Features-->
           </div>
-          <!--Price-->
-
-          <!--Features-->
-          <!--PANIER-->
-          <div class="card-body striped purple-striped card-background heading px-5">
-            <h1 class="my-4" *ngIf="cart === 0">Votre panier est vide </h1>
-            <ul *ngIf="cart !== 0">
-              <li *ngIf="tickets[0].qty !== 0">
-                <p class="mt-1">
-                  Ticket(s): {{tickets[0].name}}</p>
-                <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('adulte')">
-                  <i class="fa fa-2x fa-minus"></i>
-                </button>
-                <div class="chip peach-gradient w-10">
-                  <p class="font-weight-bold">{{tickets[0].qty}}</p>
-                </div>
-                <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("adulte")'>
-                  <i class="fa fa-2x fa-plus"></i>
-                </button>
-              </li>
-              <li *ngIf="tickets[1].qty !== 0">
-                <p class="mt-1">Ticket(s): {{tickets[1].name}}</p>
-                <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('enfant')">
-                  <i class="fa fa-2x fa-minus"></i>
-                </button>
-                <div class="chip aqua-gradient w-10">
-                  <p class="font-weight-bold">{{tickets[1].qty}}</p>
-                </div>
-                <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("enfant")'>
-                  <i class="fa fa-2x fa-plus"></i>
-                </button>
-              </li>
-              <li *ngIf="tickets[2].qty !== 0">
-                <p class="mt-1">Ticket(s): {{tickets[2].name}}</p>
-                <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="less('groupe')">
-                  <i class="fa fa-2x fa-minus"></i>
-                </button>
-                <div class="chip purple-gradient w-10">
-                  <p class="font-weight-bold">{{tickets[2].qty}}</p>
-                </div>
-                <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='more("groupe")'>
-                  <i class="fa fa-2x fa-plus"></i>
-                </button>
-              </li>
-            </ul>
-
-            <button class="mb-3 mt-3 btn btn-lg w-100 btn-rounded waves-light" mdbRippleRadius [disabled]="cart === 0" [style.background]="cart === 0 ? '#ffbb33' : '#00C851'"
-              (click)="style.show()">PAYER</button>
-          </div>
-          <!--Features-->
+          <!--Grid column-->
+  
         </div>
-        <!--Grid column-->
-
-      </div>
     </div>
     <!--MODALS VALIDATION PANIER-->
-    <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="heading lead mx-auto">VALIDER VOTRE PANIER</h1>
-
-          </div>
-          <div class="modal-body">
-            <div class="text-center">
-              <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
-              <h2>Voulez vous vraiment valider votre panier ?</h2>
-              <h3>Prochaine étape: PAIEMENT</h3>
+    <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="heading lead mx-auto">VALIDER VOTRE PANIER</h1>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <h2>Voulez vous vraiment valider votre panier ?</h2>
+                        <h3>Prochaine étape: PAIEMENT</h3>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a type="button" class="btn btn-lg btn-primary-modal waves-light"  (click)="payer()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+                    <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Annuler</a>
+                </div>
             </div>
-          </div>
-          <div class="modal-footer justify-content-center">
-            <a type="button" class="btn btn-lg btn-primary-modal waves-light" (click)="payer()" mdbRippleRadius>Valider
-              <i class="fa fa-diamond ml-1"></i>
-            </a>
-            <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Annuler</a>
-          </div>
         </div>
-      </div>
     </div>
     <!--MODALS INSTRUCTIONS TERMINAL DE PAIEMENT-->
-    <div mdbModal #CB="mdb-modal" [config]="{ ignoreBackdropClick: true }" class="modal fade" id="centralModalSuccess" tabindex="-1"
-      role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="heading lead mx-auto">PAIEMENT CB</h1>
-          </div>
-          <div class="modal-body">
-            <div class="text-center">
-              <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
-              <h2>Veuillez suivre les instructions sur le terminal de paiement...</h2>
+    <div mdbModal #CB="mdb-modal" [config]="{ ignoreBackdropClick: true }" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="heading lead mx-auto">PAIEMENT CB</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <h2>Veuillez suivre les instructions sur le terminal de paiement...</h2>
+                    </div>
+                </div>
+                
             </div>
-          </div>
-
         </div>
-      </div>
     </div>
     <!--MODALS DISPENSER-->
-    <div mdbModal #dispenser="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
+    <div mdbModal #dispenser="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-notify modal-success modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="heading lead mx-auto">CARTE D'ABONNEMENT</h1>
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="heading lead mx-auto">CARTE D'ABONNEMENT</h1>
+              </div>
+              <div class="modal-body">
+                  <div class="text-center">
+                      <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                      <h2>Veuillez récupérer votre carte d'abonnement, merci</h2>
+                  </div>
+              </div>
+              
           </div>
-          <div class="modal-body">
-            <div class="text-center">
-              <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
-              <h2>Veuillez récupérer votre carte d'abonnement, merci</h2>
-            </div>
-          </div>
-
-        </div>
       </div>
-    </div>
-    <!--BACK ANNULATION-->
-    <div mdbModal #back="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-notify modal-danger modal-lg" role="document">
+  </div>
+  <!--BACK ANNULATION-->
+  <div mdbModal #back="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-lg" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="heading lead mx-auto">RETOUR AU MENU</h1>
+                
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <h2>Voulez vous vraiment annuler votre panier ?</h2>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-lg btn-primary-modal waves-light"  (click)="onBackValid()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+                <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="back.hide()" mdbRippleRadius>Annuler</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--INCIDENT PAIEMENT-->
+<div mdbModal #incident="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger modal-lg" role="document">
+      <div class="modal-content">
           <div class="modal-header">
-            <h1 class="heading lead mx-auto">RETOUR AU MENU</h1>
-
+              <h1 class="heading lead mx-auto">INCIDENT TRANSACTION</h1>
+              
           </div>
           <div class="modal-body">
-            <div class="text-center">
-              <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
-              <h2>Voulez vous vraiment annuler votre panier ?</h2>
-            </div>
+              <div class="text-center">
+                  <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                  <h2>Voulez vous réessayer ?</h2>
+              </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <a type="button" class="btn btn-lg btn-primary-modal waves-light" (click)="onBackValid()" mdbRippleRadius>Valider
-              <i class="fa fa-diamond ml-1"></i>
-            </a>
-            <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="back.hide()" mdbRippleRadius>Annuler</a>
+              <a type="button" class="btn btn-lg btn-primary-modal waves-light"  (click)="payer()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+              <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="onBackValid()" mdbRippleRadius>Annuler</a>
           </div>
-        </div>
       </div>
-    </div>
-    <!--INCIDENT PAIEMENT-->
-    <div mdbModal #incident="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-notify modal-danger modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="heading lead mx-auto">INCIDENT TRANSACTION</h1>
-
-          </div>
-          <div class="modal-body">
-            <div class="text-center">
-              <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
-              <h2>Voulez vous réessayer ?</h2>
-            </div>
-          </div>
-          <div class="modal-footer justify-content-center">
-            <a type="button" class="btn btn-lg btn-primary-modal waves-light" (click)="payer()" mdbRippleRadius>Valider
-              <i class="fa fa-diamond ml-1"></i>
-            </a>
-            <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="onBackValid()" mdbRippleRadius>Annuler</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+</div>
 
   </section>
   <!--Section: Pricing v.1-->
-
+  
 </div>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io('http://10.1.1.103:5000');
 
-</script>

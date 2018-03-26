@@ -36,7 +36,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true, useHash: true }
+      { enableTracing: true, useHash: true, onSameUrlNavigation: 'reload' }
     ),
     MDBBootstrapModules.forRoot(),
     ToastModule.forRoot({preventDuplicates: true}),
