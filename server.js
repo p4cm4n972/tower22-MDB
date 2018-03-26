@@ -145,12 +145,12 @@ io.on("connection", function (socket) {
     console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.Status));
     if (dataticket.Status === "Transaction Accepted") {
       console.log("TRANSACTION ACEPTED");
-      io.emit("CB", {
+      socket.emit("CB", {
         data: "CB"
       });
     } else if (dataticket.Status === "Transaction Refused") {
       console.log("TRANSACTION REFUSED");
-      io.emit("incident", {
+      socket.emit("incident", {
         data: "incident"
       });
     } else {
@@ -162,7 +162,7 @@ io.on("connection", function (socket) {
   app.post("/ws/cmdack", function (req, res) {
     console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body.Acknowledge));
     //EMIT
-    io.emit("receipt", {
+    socket.emit("receipt", {
       data: (req.body.Acknowledge)
     });
     res.json(req.body.Acknowledge);
