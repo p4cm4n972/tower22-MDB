@@ -4,11 +4,12 @@ import { RouterModule, Router } from '@angular/router';
 import * as socketIo from 'socket.io-client';
 import { Socket } from './ws';
 import { Url } from '../app/app-config';
+import { Location } from '@angular/common';
 
 
 @Injectable()
 export class RestService {
-  constructor(private http: HttpClient,private router: Router) {}
+  constructor(private http: HttpClient,private router: Router, private location: Location) {}
   public data;
   private socket: Socket;
   // CHECK OUT AMOUNT
@@ -74,10 +75,13 @@ export class RestService {
       });
   }*/
   deconnect() {
+    const router = this.router;
     return this.http
       .post(
         'http://10.1.1.103:5000/ws/disconnect', 'disconnect'
       )
-      .subscribe();
+      .subscribe(() => {
+      this.location.back();
+      });
   }
 }

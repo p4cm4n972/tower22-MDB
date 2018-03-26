@@ -168,6 +168,7 @@ io.on("connection", function (socket) {
   });
   app.post('/ws/disconnect', function (req, res) {
     socket.emit('disconnect','disconnect');
+    res.json('disconnect');
   })
   socket.on('disconnect', function (data) {
     delete socket;

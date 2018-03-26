@@ -156,7 +156,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
             this.cart = 0;
           }
           this.rest.deconnect();
-          this.router.navigate(['/home']);
         } else {
           this.rest.dataticket();
           this.receiptInfo();
@@ -164,13 +163,13 @@ export class TicketsComponent implements OnInit, OnDestroy {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        // this.rest.deconnect();
-        this.router.navigate(['/home']);
+        this.rest.deconnect();
         break;
       case 'incident':
         this.trackerIncident = 0;
         this.CBModal.hide();
         this.contentModal.hide();
+        this.rest.deconnect();
         break;
     }
   }
@@ -188,7 +187,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
   onBack(): void {
     if (this.total === 0) {
       this.rest.deconnect();
-      this.router.navigate(['/home']);
     } else {
       this.backModal.show();
     }
@@ -201,6 +199,5 @@ export class TicketsComponent implements OnInit, OnDestroy {
       this.cart = 0;
     }
     this.rest.deconnect();
-    this.router.navigate(['/home']);
   }
 }
