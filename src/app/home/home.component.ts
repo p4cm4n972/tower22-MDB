@@ -6,10 +6,11 @@ import { Location } from '@angular/common';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private location: Location ) { }
-
-  test():void {
+  constructor(private location: Location ) {
+    
   }
+
   ngOnInit() {
+   
    }
 }
