@@ -181,7 +181,6 @@ export class TicketsComponent implements OnInit {
       this.status(data);
     });
   }
-  
   // CONDITION RETOUR MENU
   onBack(): void {
     if (this.total === 0) {
