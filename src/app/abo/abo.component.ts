@@ -164,7 +164,7 @@ export class AboComponent implements OnInit {
         this.rest.deconnect();
         break;
       case 'incident':
-      this.trackerIncident = 0;
+        this.trackerIncident = 0;
         this.CBModal.hide();
         this.contentModal.hide();
         this.incident();
