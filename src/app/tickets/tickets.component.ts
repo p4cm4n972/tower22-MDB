@@ -27,6 +27,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
+  public pass;
   // PASS
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
@@ -156,6 +157,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
             this.cart = 0;
           }
           this.rest.deconnect();
+          window.location.reload();
           this.router.navigate(['/home']);
 
         } else {
@@ -167,6 +169,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
         this.receiptSuccess();
         this.rest.deconnect();
         console.log('IS DISCONNECTED');
+        window.location.reload();
         this.router.navigate(['/home']);
         break;
       case 'incident':
@@ -183,6 +186,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
       console.log(data);
       this.status(data);
     });
+    this.pass++
   }
   ngOnDestroy() {
   }
