@@ -182,7 +182,7 @@ export class AboComponent implements OnInit {
   // CONDITION RETOUR MENU
   onBack(): void {
     if (this.total === 0) {
-      this.router.navigate(['/home']);
+      this.rest.deconnect();
     } else {
       this.backModal.show();
     }
@@ -194,6 +194,6 @@ export class AboComponent implements OnInit {
       this.total = 0;
       this.abo = 0;
     }
-    this.router.navigate(['/home']);
+    this.rest.deconnect();
   }
 }
