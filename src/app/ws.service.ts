@@ -14,7 +14,8 @@ export class WsService {
   observer: Observer<string>;
 
   getStatus(): Observable<string> {
-    this.socket = socketIo('http://10.1.1.103:5000', { reconnection: false});
+    this.socket.close();
+    this.socket = socketIo('http://10.1.1.103:5000', { reconnect: false});
     this.socket.on('clientdata', (res) => {
       this.observer.next(res.data);
     });
