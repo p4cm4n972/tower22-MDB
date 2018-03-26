@@ -19,12 +19,11 @@ import { RouterModule, Router } from '@angular/router';
 export class TicketsComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) {
-}
+  }
   public cart: number = 0;
   public total: number = 0;
   public inChart: boolean = true;
   public trackerIncident: number = 0;
-  public pass: number = 0;
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
@@ -168,7 +167,6 @@ export class TicketsComponent implements OnInit, OnDestroy {
         this.receiptSuccess();
         this.rest.deconnect();
         console.log('IS DISCONNECTED');
-        this.pass++;
         this.router.navigate(['/home']);
         break;
       case 'incident':
@@ -180,16 +178,11 @@ export class TicketsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    alert('pass :' + this.pass);
-    if(this.pass >= 4) {
-      window.location.reload();
-    } else {
-      this.pass++;
     this.sub = this.ws.getStatus().subscribe(data => {
       this.data = data;
       console.log(data);
       this.status(data);
-    });}
+    });
   }
   ngOnDestroy() {
   }

@@ -7,10 +7,8 @@ import { Location } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   constructor(private location: Location ) {
-    
   }
 
   ngOnInit() {
-   
    }
 }

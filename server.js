@@ -7,7 +7,7 @@ const cors = require("cors");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
-sockets = new Set();
+const clients = {};
 //style console
 const colors = require('colors');
 
@@ -139,6 +139,7 @@ server.listen(app.get("port"), function () {
 //SOCKET CONNECTION
 io.on("connection", function (socket) {
   console.log(`Socket ${socket.id} added`);
+  clients[socket.id] = socket;
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
     const dataticket = req.body;
@@ -169,7 +170,7 @@ io.on("connection", function (socket) {
   });
   
   socket.on('disconnect', function (data) {
-    sockets.delete(socket);
+    delete clients[socket.id];
     console.log('user disconnected');
   });
 });
