@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Location } from '@angular/common';
 import { TICKETS } from '../tickets/mock-ticket';
 import { Ticket } from '../tickets/ticket';
 // SERVICE
@@ -17,7 +18,7 @@ import { RouterModule, Router } from '@angular/router';
 
 export class TicketsComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, public rest: RestService, private toast: ToastService, private ws: WsService) {
+  constructor(private router: Router, private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) {
   }
   public cart: number = 0;
   public total: number = 0;
@@ -26,6 +27,8 @@ export class TicketsComponent implements OnInit, OnDestroy {
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
+  // PASS
+  public pass: number = 0;
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
   @ViewChild('dispenser') public dispenserModal;
@@ -181,6 +184,12 @@ export class TicketsComponent implements OnInit, OnDestroy {
       console.log(data);
       this.status(data);
     });
+    if (this.pass === 4) {
+      window.location.reload();
+    } else {
+      this.pass++;
+    }
+
   }
   ngOnDestroy() {
   }
