@@ -16,7 +16,7 @@ import { RouterModule, Router } from '@angular/router';
   styleUrls: ['./tickets.component.scss']
 })
 
-export class TicketsComponent implements OnInit, OnDestroy {
+export class TicketsComponent implements OnInit {
 
   constructor(private router: Router, private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) {
   }
@@ -181,8 +181,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
       this.status(data);
     });
   }
-  ngOnDestroy() {
-  }
+  
   // CONDITION RETOUR MENU
   onBack(): void {
     if (this.total === 0) {

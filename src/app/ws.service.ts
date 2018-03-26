@@ -14,7 +14,7 @@ export class WsService {
   observer: Observer<string>;
 
   getStatus(): Observable<string> {
-    this.socket = socketIo('http://10.1.1.103:5000');
+    this.socket = socketIo('http://10.1.1.102:5000');
     this.socket.on('clientdata', (res) => {
     this.observer.next(res.data);
     });
@@ -32,7 +32,6 @@ export class WsService {
   createObservable(): Observable<string> {
     return new Observable<string>(observer => {
       this.observer = observer;
-      this.socket.close();
     });
   }
   private handleError(error) {
