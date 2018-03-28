@@ -170,8 +170,7 @@ io.on("connection", function (socket) {
     socket.emit('disconnect','disconnect');
     res.json('disconnect');
   })
-  socket.on('disconnect', function (data) {
-    io.close();
+  socket.on('disconnecting', function (data) {
     console.log(`SERVER ${socket.id} +  'user disconnected`);
   });
   app.post('/ws/status', function (req, res) {
