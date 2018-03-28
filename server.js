@@ -174,6 +174,6 @@ io.on("connection", function (socket) {
     console.log(`SERVER ${socket.id} +  'user disconnected`);
   });
   app.post('/ws/status', function (req, res) {
-    console.log(req.body);
+    console.log(req.body.Mode);
   })
 });
