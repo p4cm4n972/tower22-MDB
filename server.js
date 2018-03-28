@@ -161,7 +161,7 @@ io.on("connection", function (socket) {
   app.post("/ws/cmdack", function (req, res) {
     console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body.Acknowledge));
     //EMIT
-    socketo.emit("receipt", {
+    socket.emit("receipt", {
       data: (req.body.Acknowledge)
     });
     res.json(req.body.Acknowledge);
