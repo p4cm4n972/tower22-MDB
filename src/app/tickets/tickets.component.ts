@@ -188,7 +188,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.socket.disconnect();
   }
   // CONDITION RETOUR MENU
   onBack(): void {
