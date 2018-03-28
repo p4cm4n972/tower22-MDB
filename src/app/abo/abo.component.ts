@@ -161,7 +161,8 @@ export class AboComponent implements OnInit, OnDestroy {
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
-        this.rest.deconnect();
+        this.router.navigate(['/home']);
+        // this.rest.deconnect();
         break;
       case 'incident':
         this.trackerIncident = 0;
