@@ -82,7 +82,6 @@ export class RestService {
       )
       .subscribe(() => {
         this.location.back();
-        this.socket.disconnect();
       });
   }
 }
