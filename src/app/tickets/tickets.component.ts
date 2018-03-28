@@ -132,9 +132,7 @@ export class TicketsComponent implements OnInit {
   }
   // DEBUT TRANSACTION ENVOIE INFOS (n° transaction, montant total)
   payer(total) {
-    this.socket = socketIo('http://10.1.1.103:5000', { reconnection: true, reconnectionDelay: 1000,
-    reconnectionDelayMax : 5000,
-    reconnectionAttempts: Infinity});
+    
     this.contentModal.hide();
     this.incidentModal.hide();
     this.CBModal.show();
