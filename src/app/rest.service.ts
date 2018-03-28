@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
-import * as socketIo from 'socket.io-client';
+// import * as socketIo from 'socket.io-client';
 import { Socket } from './ws';
 import { Url } from '../app/app-config';
 import { Location } from '@angular/common';

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 // SOCKET
-import * as socketIo from 'socket.io-client';
-import { Socket } from '../ws';
+// import * as socketIo from 'socket.io-client';
+// import { Socket } from '../ws';
 import { Url } from '../../app/app-config';
 @Component({
   selector: 'app-home',
@@ -12,7 +12,6 @@ import { Url } from '../../app/app-config';
 export class HomeComponent implements OnInit {
   constructor(private location: Location ) {
   }
-  private socket: Socket;
   ngOnInit() {
   }
 }

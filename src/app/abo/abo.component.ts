@@ -8,8 +8,8 @@ import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
 //
-import * as socketIo from 'socket.io-client';
-import { Socket } from '../ws';
+// import * as socketIo from 'socket.io-client';
+// import { Socket } from '../ws';
 
 @Component({
   selector: 'app-abo',
@@ -25,7 +25,7 @@ export class AboComponent implements OnInit, OnDestroy {
   public subAbo: Subscription;
   public data;
   public trackerIncident: number = 0;
-  private socket: Socket;
+  // private socket: Socket;
 
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
