@@ -167,7 +167,7 @@ io.on("connection", function (socket) {
     res.json(req.body.Acknowledge);
   });
   app.post('/ws/disconnect', function (req, res) {
-    io.emit('disconnect','disconnect');
+    socket.emit('disconnect','disconnect');
     res.json('disconnect');
   })
   socket.on('disconnect', function (data) {
