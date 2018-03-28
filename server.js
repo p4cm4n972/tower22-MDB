@@ -187,8 +187,8 @@ io.on("connection", function (socket) {
     res.json('disconnect');
   })
   socket.on('disconnect', function (data) {
-  socket.disconnect();
-    console.log(`SERVER ${socket.id} +  'user disconnected`);
+  socket.disconnect(true);
+  console.log(`SERVER ${socket.id} +  'user disconnected`);
   });
   app.post('/ws/status', function (req, res) {
     console.log("BORNE MODE: ".bgMagenta + req.body.Mode);

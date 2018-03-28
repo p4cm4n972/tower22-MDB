@@ -70,6 +70,9 @@ export class RestService {
         }
       )
       .subscribe((data) => {
+        this.socket.on('disconnect', function() {
+          console.log('CLIENT DISconnect');
+        });
         console.log(data);
       });
   }
