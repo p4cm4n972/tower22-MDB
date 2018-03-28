@@ -168,8 +168,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        this.router.navigate(['/home']);
-        // this.rest.deconnect();
+        this.rest.deconnect();
         break;
       case 'incident':
         this.trackerIncident = 0;

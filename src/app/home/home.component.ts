@@ -15,5 +15,4 @@ export class HomeComponent implements OnInit {
   private socket: Socket;
   ngOnInit() {
   }
-  
 }
