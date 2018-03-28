@@ -23,7 +23,9 @@ export class RestService {
           TransactionNumber: tn
         }
       )
-      .subscribe();
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
   // PRINT CB TICKET
   checkCB() {
@@ -35,7 +37,9 @@ export class RestService {
         'TicketURL': 'BorneProduit/DataTicket/dataticket.pdf'
       }
     )
-      .subscribe();
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
   // PRINT RECEIPT
   dataticket() {
@@ -49,7 +53,9 @@ export class RestService {
           'TicketURL': 'BorneProduit/Receipts/Receipt.pdf'
         }
       )
-      .subscribe();
+      .subscribe((data) => {
+        console.log(data);
+      });
 
   }
   // DISPENSER
@@ -63,7 +69,9 @@ export class RestService {
           'Cmd': 'Distribute'
         }
       )
-      .subscribe();
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
   // Product Mode ( in service, dep, out of service )
   /*heartbeat() {
