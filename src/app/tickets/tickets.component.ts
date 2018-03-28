@@ -132,6 +132,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
   }
   // DEBUT TRANSACTION ENVOIE INFOS (n° transaction, montant total)
   payer(total) {
+    this.socket = socketIo('http://10.1.1.103:5000');
     this.contentModal.hide();
     this.incidentModal.hide();
     this.CBModal.show();

@@ -7,7 +7,9 @@ import { Abo } from '../abo/abo';
 import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
-
+//
+import * as socketIo from 'socket.io-client';
+import { Socket } from '../ws';
 
 @Component({
   selector: 'app-abo',
@@ -23,6 +25,7 @@ export class AboComponent implements OnInit, OnDestroy {
   public subAbo: Subscription;
   public data;
   public trackerIncident: number = 0;
+  private socket: Socket;
 
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
@@ -121,6 +124,7 @@ export class AboComponent implements OnInit, OnDestroy {
   }
   // DEBUT TRANSACTION ENVOIE INFOS
   payer(total) {
+    this.socket = socketIo('http://10.1.1.103:5000');
     console.log(this.total);
     this.contentModal.hide();
     this.CBModal.show();
@@ -161,8 +165,8 @@ export class AboComponent implements OnInit, OnDestroy {
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
-        this.router.navigate(['/home']);
-        // this.rest.deconnect();
+        // this.router.navigate(['/home']);
+        this.rest.deconnect();
         break;
       case 'incident':
         this.trackerIncident = 0;

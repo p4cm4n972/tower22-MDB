@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as socketIo from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import * as socketIo from 'socket.io-client';
 import { Socket } from './ws';
 import { Url } from '../app/app-config';
 
@@ -14,7 +14,7 @@ export class WsService {
   observer: Observer<string>;
 
   getStatus(): Observable<string> {
-    this.socket = socketIo('http://10.1.1.103:5000');
+    // this.socket = socketIo('http://10.1.1.103:5000');
     this.socket.on('clientdata', (res) => {
     this.observer.next(res.data);
     });
