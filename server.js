@@ -96,7 +96,7 @@ app.post("/api/invoice", function (req, res) {
         "TransactionNumber": (data.TransactionNumber)
       }
     }
-  )
+  ).end('');
   res.json('invoice :' + req.body);
 })
 // API CHECK CB
@@ -107,7 +107,7 @@ app.post("/api/dataticket", function (req, res) {
     "http://10.1.128:9010/ws/dataticket", {
       json: dataq
     }
-  )
+  ).end('');
 })
 // API RECEIPT
 app.post("/api/receipt", function (req, res) {
@@ -117,7 +117,7 @@ app.post("/api/receipt", function (req, res) {
     "http://10.1.1.128:9010/ws/dataticket", {
       json: data
     }
-  )
+  ).end('');
 })
 // API DISPENSER
 app.post("/api/dispenser", function( req, res) {
@@ -127,7 +127,7 @@ app.post("/api/dispenser", function( req, res) {
     "http://10.1.1.128:9010/ws/dispenser", {
       json: data
     }
-  )
+  ).end('');
 })
 //EXPRESS SERVER
 app.set("port", process.env.PORT || 5000);
