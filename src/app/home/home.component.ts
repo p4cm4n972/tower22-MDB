@@ -14,9 +14,6 @@ export class HomeComponent implements OnInit {
   }
   private socket: Socket;
   ngOnInit() {
-    this.load();
   }
-  load() {
-    this.socket = socketIo('http://10.1.1.103:5000');
-   }
+  
 }
