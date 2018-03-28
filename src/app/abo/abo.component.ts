@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ABOS } from '../abo/mock-abo';
@@ -14,7 +14,7 @@ import { WsService } from '../ws.service';
   templateUrl: './abo.component.html',
   styleUrls: ['./abo.component.scss']
 })
-export class AboComponent implements OnInit {
+export class AboComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, public rest: RestService, private toast: ToastService, private ws: WsService) { }
   public abo: number = 0;
@@ -178,6 +178,9 @@ export class AboComponent implements OnInit {
       console.log(data);
       this.status(data);
     });
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
   // CONDITION RETOUR MENU
   onBack(): void {
