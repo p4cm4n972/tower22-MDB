@@ -134,46 +134,49 @@ app.set("port", process.env.PORT || 5000);
 server.listen(app.get("port"), function () {
   console.log("Express server listening on port " + app.get("port"));
 });
+app.post('/ws/status', function (req, res) {
+  console.log(req.body.Mode);
+  io.on("connection", function (socket) {
+    console.log(`Socket ${socket.id} added`);
+    //PAYMENT
+    app.post("/ws/receipt", function (req, res) {
+      const dataticket = req.body;
+      console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.Status));
+      if (dataticket.Status === "Transaction Accepted") {
+        console.log("TRANSACTION ACCEPTED");
+        io.emit("CB", {
+          data: "CB"
+        });
+      } else if (dataticket.Status === "Transaction Refused") {
+        console.log("TRANSACTION REFUSED");
+        io.emit("incident", {
+          data: "incident"
+        });
+      } else {
+        console.log(dataticket.Status);
+      }
+      res.json(dataticket.Status);
+    });
+    //PRINT
+    app.post("/ws/cmdack", function (req, res) {
+      console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body.Acknowledge));
+      //EMIT
+      io.emit("receipt", {
+        data: (req.body.Acknowledge)
+      });
+      res.json(req.body.Acknowledge);
+    });
+    app.post('/ws/disconnect', function (req, res) {
+      socket.emit('disconnect','disconnect');
+      res.json('disconnect');
+    })
+    socket.on('disconnect', function (data) {
+      io.close();
+      console.log(`SERVER ${socket.id} +  'user disconnected`);
+    });
+    
+  });
+})
 
 //SOCKET CONNECTION
-io.on("connection", function (socket) {
-  console.log(`Socket ${socket.id} added`);
-  //PAYMENT
-  app.post("/ws/receipt", function (req, res) {
-    const dataticket = req.body;
-    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.Status));
-    if (dataticket.Status === "Transaction Accepted") {
-      console.log("TRANSACTION ACCEPTED");
-      io.emit("CB", {
-        data: "CB"
-      });
-    } else if (dataticket.Status === "Transaction Refused") {
-      console.log("TRANSACTION REFUSED");
-      io.emit("incident", {
-        data: "incident"
-      });
-    } else {
-      console.log(dataticket.Status);
-    }
-    res.json(dataticket.Status);
-  });
-  //PRINT
-  app.post("/ws/cmdack", function (req, res) {
-    console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body.Acknowledge));
-    //EMIT
-    io.emit("receipt", {
-      data: (req.body.Acknowledge)
-    });
-    res.json(req.body.Acknowledge);
-  });
-  app.post('/ws/disconnect', function (req, res) {
-    socket.emit('disconnect','disconnect');
-    res.json('disconnect');
-  })
-  socket.on('disconnect', function (data) {
-    console.log(`SERVER ${socket.id} +  'user disconnected`);
-  });
-  app.post('/ws/status', function (req, res) {
-    console.log(req.body.Mode);
-  })
-});
+
