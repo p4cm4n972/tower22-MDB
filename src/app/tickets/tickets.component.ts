@@ -19,7 +19,7 @@ import { Url } from '../../app/app-config';
   styleUrls: ['./tickets.component.scss']
 })
 
-export class TicketsComponent implements OnInit {
+export class TicketsComponent implements OnInit, OnDestroy{
 
   constructor(private router: Router, private location: Location, public rest: RestService, private toast: ToastService, private ws: WsService) {
   }
@@ -186,6 +186,10 @@ export class TicketsComponent implements OnInit {
       console.log(data);
       this.status(data);
     });
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.socket.disconnect();
   }
   // CONDITION RETOUR MENU
   onBack(): void {
