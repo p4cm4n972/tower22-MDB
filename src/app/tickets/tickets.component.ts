@@ -8,7 +8,10 @@ import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
 import { WsService } from '../ws.service';
 import { RouterModule, Router } from '@angular/router';
-
+// SOCKET
+import * as socketIo from 'socket.io-client';
+import { Socket } from '../ws';
+import { Url } from '../../app/app-config';
 
 @Component({
   selector: 'app-tickets',
@@ -27,6 +30,8 @@ export class TicketsComponent implements OnInit {
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
+  private socket: Socket;
+  
   // PASS
   @ViewChild('style') public contentModal;
   @ViewChild('CB') public CBModal;
@@ -127,6 +132,7 @@ export class TicketsComponent implements OnInit {
   }
   // DEBUT TRANSACTION ENVOIE INFOS (n° transaction, montant total)
   payer(total) {
+    this.socket = socketIo('http://10.1.1.103:5000');    
     this.contentModal.hide();
     this.incidentModal.hide();
     this.CBModal.show();
