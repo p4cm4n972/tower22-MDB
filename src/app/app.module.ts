@@ -9,7 +9,9 @@ import { MDBSpinningPreloader } from 'ng-mdb-pro';
 import { ToastModule } from 'ng-mdb-pro/pro/alerts';
 // ROUTER
 import { RouterModule, Routes } from '@angular/router';
-
+// INTERCEPTOR
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptor } from './http-interceptor';
 // SERVICE
 import { RestService } from '../app/rest.service';
 import { WsService } from '../app/ws.service';
@@ -44,7 +46,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [MDBSpinningPreloader, RestService, WsService, {provide: LocationStrategy, useClass: HashLocationStrategy} ],
+  providers: [MDBSpinningPreloader, RestService, WsService, {provide: LocationStrategy, useClass: HashLocationStrategy},{
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyHttpInterceptor,
+    multi: true
+  } ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
