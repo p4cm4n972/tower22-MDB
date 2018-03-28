@@ -124,7 +124,6 @@ export class AboComponent implements OnInit, OnDestroy {
   }
   // DEBUT TRANSACTION ENVOIE INFOS
   payer(total) {
-    this.socket = socketIo('http://10.1.1.103:5000');
     console.log(this.total);
     this.contentModal.hide();
     this.CBModal.show();
