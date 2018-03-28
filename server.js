@@ -95,7 +95,7 @@ app.post("/api/invoice", function (req, res) {
         "AmountToPay": (data.AmountToPay),
         "TransactionNumber": (data.TransactionNumber)
       }
-    }, function( err, res, data) {
+    }, function( error, res, data) {
       console.log('error:', error); // Print the error if one occurred
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
@@ -110,7 +110,7 @@ app.post("/api/dataticket", function (req, res) {
   request.post(
     "http://10.1.128:9010/ws/dataticket", {
       json: dataq
-    }, function( err, res, data) {
+    }, function( error, res, data) {
       console.log('error:', error); // Print the error if one occurred
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
@@ -124,7 +124,7 @@ app.post("/api/receipt", function (req, res) {
   request.post(
     "http://10.1.1.128:9010/ws/dataticket", {
       json: data
-    }, function( err, res, data) {
+    }, function( error, res, data) {
       console.log('error:', error); // Print the error if one occurred
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
@@ -138,7 +138,7 @@ app.post("/api/dispenser", function( req, res) {
   request.post(
     "http://10.1.1.128:9010/ws/dispenser", {
       json: data
-    }, function( err, res, data) {
+    }, function( error, res, data) {
       console.log('error:', error); // Print the error if one occurred
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
