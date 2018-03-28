@@ -115,7 +115,7 @@ app.post("/api/dataticket", function (req, res) {
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
     }
-  ).end('')
+  )
 })
 // API RECEIPT
 app.post("/api/receipt", function (req, res) {
@@ -129,7 +129,7 @@ app.post("/api/receipt", function (req, res) {
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
     }
-  ).end('')
+  )
 })
 // API DISPENSER
 app.post("/api/dispenser", function( req, res) {
@@ -143,7 +143,7 @@ app.post("/api/dispenser", function( req, res) {
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       console.log('body:', body); // Print the HTML for the Google homepage.
     }
-  ).end('')
+  )
 })
 //EXPRESS SERVER
 app.set("port", process.env.PORT || 5000);
