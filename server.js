@@ -136,9 +136,7 @@ server.listen(app.get("port"), function () {
 });
 
 //SOCKET CONNECTION
-io.on("connection",{ reconnection: true, reconnectionDelay: 1000,
-  reconnectionDelayMax : 5000,
-  reconnectionAttempts: Infinity}, function (socket) {
+io.on("connection", function (socket) {
   console.log(`Socket ${socket.id} added`);
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
