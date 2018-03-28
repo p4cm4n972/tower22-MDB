@@ -132,7 +132,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
   }
   // DEBUT TRANSACTION ENVOIE INFOS (n° transaction, montant total)
   payer(total) {
-    
     this.contentModal.hide();
     this.incidentModal.hide();
     this.CBModal.show();
