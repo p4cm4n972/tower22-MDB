@@ -20,7 +20,7 @@ export class AboComponent implements OnInit, OnDestroy {
   public abo: number = 0;
   public total: number = 0;
   public abos = ABOS;
-  public sub: Subscription;
+  public subAbo: Subscription;
   public data;
   public trackerIncident: number = 0;
 
@@ -128,7 +128,7 @@ export class AboComponent implements OnInit, OnDestroy {
     this.rest.checkOut(TransactionNumber.toString(), (this.total * 100).toString());
   }
   // SOCKET EMIT STATUS
-  status(data) {
+  statusAbo(data) {
     switch (data) {
       case 'CB':
         this.CBModal.hide();
@@ -174,10 +174,10 @@ export class AboComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    this.sub = this.ws.getStatus().subscribe(data => {
+    this.subAbo = this.ws.getStatus().subscribe(data => {
       this.data = data;
       console.log(data);
-      this.status(data);
+      this.statusAbo(data);
     });
   }
   ngOnDestroy() {
