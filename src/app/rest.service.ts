@@ -81,8 +81,8 @@ export class RestService {
         'http://10.1.1.103:5000/ws/disconnect', 'disconnect'
       )
       .subscribe(() => {
+        this.location.back();
         this.socket.disconnect('disconnect', 'disconnect');
-      this.location.back();
       });
   }
 }
