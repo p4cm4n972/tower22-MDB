@@ -183,7 +183,7 @@ export class AboComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    this.subAbo.unsubscribe();
+   // this.subAbo.unsubscribe();
   }
   // CONDITION RETOUR MENU
   onBack(): void {
