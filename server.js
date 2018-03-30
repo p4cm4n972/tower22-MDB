@@ -117,6 +117,8 @@ app.post("/api/dataticket", function (req, res) {
       console.log('body:', body); // Print the HTML for the Google homepage.
     }
   )
+  res.json('datatticket :' + req.body);
+  
 })
 // API RECEIPT
 app.post("/api/receipt", function (req, res) {
@@ -131,6 +133,8 @@ app.post("/api/receipt", function (req, res) {
       console.log('body:', body); // Print the HTML for the Google homepage.
     }
   )
+  res.json('receipt :' + req.body);
+  
 })
 // API DISPENSER
 app.post("/api/dispenser", function( req, res) {
@@ -145,6 +149,8 @@ app.post("/api/dispenser", function( req, res) {
       console.log('body:', body); // Print the HTML for the Google homepage.
     }
   )
+  res.json('dispenser :' + req.body);
+  
 })
 //EXPRESS SERVER
 app.set("port", process.env.PORT || 5000);
