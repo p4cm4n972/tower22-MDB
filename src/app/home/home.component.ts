@@ -200,8 +200,9 @@ export class HomeComponent implements OnInit {
         }
         break;
       case 'Print DATA OK':
+      console.log(this.aboTransaction);
         this.receiptSuccess();
-        if(this.aboTransaction = 0 ) {
+        if (this.aboTransaction = 0 )  {
           this.onBack();
         } else {
           this.rest.dispenser();
@@ -212,8 +213,8 @@ export class HomeComponent implements OnInit {
         this.aboTransaction = 0;
         setTimeout(() => {
           this.dispenserModal.hide();
-          this.onBack();
         }, 5000);
+        this.onBack();
         break;
       case 'incident':
         this.trackerIncident = 0;

@@ -46,11 +46,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [MDBSpinningPreloader, RestService, WsService, {provide: LocationStrategy, useClass: HashLocationStrategy},{
-    provide: HTTP_INTERCEPTORS,
-    useClass: MyHttpInterceptor,
-    multi: true
-  } ],
+  providers: [MDBSpinningPreloader, RestService, WsService, {provide: LocationStrategy, useClass: HashLocationStrategy} ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
