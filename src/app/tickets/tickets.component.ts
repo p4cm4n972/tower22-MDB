@@ -6,12 +6,12 @@ import { Ticket } from '../tickets/ticket';
 // SERVICE
 import { RestService } from '../rest.service';
 import { ToastService } from 'ng-mdb-pro/pro/alerts';
-import { WsService } from '../ws.service';
 import { RouterModule, Router } from '@angular/router';
+import { WsService } from '../ws.service';
 // SOCKET
 // import * as socketIo from 'socket.io-client';
-// import { Socket } from '../ws';
-import { Url } from '../../app/app-config';
+ import { Socket } from '../ws';
+// import { Url } from '../../app/app-config';
 
 @Component({
   selector: 'app-tickets',
@@ -30,7 +30,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
   public tickets = TICKETS;
   public sub: Subscription;
   public data;
-  // private socket: Socket;
+  private socket: Socket;
   
   // PASS
   @ViewChild('style') public contentModal;
