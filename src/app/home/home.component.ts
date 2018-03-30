@@ -205,11 +205,14 @@ export class HomeComponent implements OnInit {
           this.onBack();
         } else {
           this.rest.dispenser();
-          this.onBack();
         }
         break;
         case 'Dispenser OK':
         this.dispenserModal.show();
+        setTimeout(() => {
+          this.dispenserModal.hide();
+          this.onBack();
+        }, 5000);
         break;
       case 'incident':
         this.trackerIncident = 0;

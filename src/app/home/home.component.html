@@ -15,8 +15,8 @@
   </div>
   </div>
   <!--MODALS TICKETS-->
-  <div [config]="{class:'mt'}" mdbModal #ticketsModal="mdb-modal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
-      <div class="modal-dialog central-modal modal-fluid" role="document">
+  <div mdbModal #ticketsModal="mdb-modal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true,class:mt}">
+      <div class="modal-dialog modal-center modal-fluid" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close pull-right" aria-label="Close" (click)="onBack()">
