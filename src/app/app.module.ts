@@ -18,13 +18,13 @@ import { WsService } from '../app/ws.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { TicketsComponent } from './tickets/tickets.component';
-import { AboComponent } from './abo/abo.component';
+// import { TicketsComponent } from './tickets/tickets.component';
+// import { AboComponent } from './abo/abo.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'tickets', component: TicketsComponent },
-  { path: 'abo', component: AboComponent },
+  // { path: 'tickets', component: TicketsComponent },
+  // { path: 'abo', component: AboComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
@@ -32,8 +32,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    TicketsComponent,
-    AboComponent
+    /*TicketsComponent,
+    AboComponent*/
   ],
   imports: [
     RouterModule.forRoot(
