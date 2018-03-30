@@ -1,7 +1,21 @@
 .container {
     margin-top:200px;
 }
-.modalConfig {
+.mt {
    background-color: transparent;
    color: red
+}
+.in {
+    opacity: .5 !important;
+}
+.modal {
+    top:80px;
+    
+}
+.modal-body {
+    background:rgba(243, 239, 239, 0.5);
+    
+}
+.modal-header {
+    background:rgba(243, 239, 239, 0.5);
 }
