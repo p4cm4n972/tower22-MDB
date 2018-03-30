@@ -209,6 +209,7 @@ export class HomeComponent implements OnInit {
         break;
         case 'Dispenser OK':
         this.dispenserModal.show();
+        this.aboTransaction = 0;
         setTimeout(() => {
           this.dispenserModal.hide();
           this.onBack();
