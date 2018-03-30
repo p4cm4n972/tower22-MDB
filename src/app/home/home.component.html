@@ -404,3 +404,79 @@
           </div>
       </div>
   </div>
+  <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="heading lead mx-auto">VALIDER VOTRE PANIER</h1>
+                
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <h2>Voulez vous vraiment valider votre panier ?</h2>
+                    <h3>Prochaine étape: PAIEMENT</h3>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-lg btn-primary-modal waves-light"  (click)="payer()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+                <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Annuler</a>
+            </div>
+        </div>
+    </div>
+</div>
+ <!--MODALS INSTRUCTIONS TERMINAL DE PAIEMENT-->
+ <div mdbModal #CB="mdb-modal" [config]="{ ignoreBackdropClick: true }" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-warning modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="heading lead mx-auto">PAIEMENT CB</h1>
+          </div>
+          <div class="modal-body">
+              <div class="text-center">
+                  <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                  <h2>Veuillez suivre les instructions sur le terminal de paiement...</h2>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+</div>
+<!--MODALS DISPENSER-->
+<div mdbModal #dispenser="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-notify modal-success modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="heading lead mx-auto">CARTE D'ABONNEMENT</h1>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <h2>Veuillez récupérer votre carte d'abonnement, merci</h2>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+<!--INCIDENT PAIEMENT-->
+<div mdbModal #incident="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="heading lead mx-auto">INCIDENT TRANSACTION</h1>
+              
+          </div>
+          <div class="modal-body">
+              <div class="text-center">
+                  <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                  <h2>Voulez vous réessayer ?</h2>
+              </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+              <a type="button" class="btn btn-lg btn-primary-modal waves-light"  (click)="payer()" mdbRippleRadius>Valider<i class="fa fa-diamond ml-1"></i></a>
+              <a type="button" class="btn btn-lg btn-outline-secondary-modal" data-dismiss="modal" (click)="onBackValid()" mdbRippleRadius>Annuler</a>
+          </div>
+      </div>
+  </div>
+</div>
