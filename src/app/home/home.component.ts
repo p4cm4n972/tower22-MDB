@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   //
   public abo: number = 0;
   public abos = ABOS;
+  public aboTransaction = 0;
   //
   public modal = 1;
   // PASS
@@ -78,6 +79,8 @@ export class HomeComponent implements OnInit {
   abonnement() {
     this.abosModal.show();
     this.modal = 0;
+    this.aboTransaction = 1;
+
   }
   // AJOUT tickets
   addTickets(ticket): void {
@@ -172,6 +175,11 @@ export class HomeComponent implements OnInit {
           this.total = 0;
           this.cart = 0;
         }
+        for (let i = 0; i < this.abos.length; i++) {
+          this.abos[i].qty = 0;
+          this.total = 0;
+          this.abo = 0;
+        }
         break;
       case 'Print CB OK':
         if (this.trackerIncident === 0) {
@@ -181,6 +189,11 @@ export class HomeComponent implements OnInit {
             this.total = 0;
             this.cart = 0;
           }
+          for (let i = 0; i < this.abos.length; i++) {
+            this.abos[i].qty = 0;
+            this.total = 0;
+            this.abo = 0;
+          }
         } else {
           this.rest.dataticket();
           this.receiptInfo();
@@ -188,7 +201,11 @@ export class HomeComponent implements OnInit {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        this.onBack();
+        if(this.aboTransaction = 0 ) {
+          this.onBack();
+        } else {
+          this.rest.dispenser();
+        }
         break;
         case 'Dispenser OK':
         this.dispenserModal.show();
