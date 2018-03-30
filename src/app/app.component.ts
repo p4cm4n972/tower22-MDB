@@ -8,8 +8,5 @@ import * as socketIo from 'socket.io-client';
   styles: ['onDisplay:onDisplay']
 })
 export class AppComponent {
-  constructor() {
-   const socket = socketIo('http://10.1.1.103:5000');
-  }
   title = 'Tower 22 v2';
 }
