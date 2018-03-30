@@ -189,7 +189,7 @@ export class HomeComponent implements OnInit {
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        this.rest.deconnect();
+        this.onBack();
         break;
       case 'incident':
         this.trackerIncident = 0;
