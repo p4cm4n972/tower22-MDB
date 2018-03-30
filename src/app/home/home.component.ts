@@ -181,7 +181,6 @@ export class HomeComponent implements OnInit {
             this.total = 0;
             this.cart = 0;
           }
-          this.rest.deconnect();
         } else {
           this.rest.dataticket();
           this.receiptInfo();
@@ -191,11 +190,13 @@ export class HomeComponent implements OnInit {
         this.receiptSuccess();
         this.onBack();
         break;
+        case 'Dispenser OK':
+        this.dispenserModal.show();
+        break;
       case 'incident':
         this.trackerIncident = 0;
         this.CBModal.hide();
         this.contentModal.hide();
-        this.rest.deconnect();
         break;
     }
   }
@@ -266,7 +267,7 @@ export class HomeComponent implements OnInit {
         break;
     }
   }
-  // REMOVE ARTICLE
+  // REMOVE ARTICLsocketIoE
   less(items) {
     switch (items) {
       case 'adulte':
@@ -328,7 +329,6 @@ export class HomeComponent implements OnInit {
             this.total = 0;
             this.abo = 0;
           }
-          this.router.navigate(['/home']);
         } else {
           this.rest.dataticket();
           this.receiptInfo();
@@ -340,7 +340,6 @@ export class HomeComponent implements OnInit {
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
-        this.rest.deconnect();
         break;
       case 'incident':
         this.trackerIncident = 0;
