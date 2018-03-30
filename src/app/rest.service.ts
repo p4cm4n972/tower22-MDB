@@ -87,13 +87,13 @@ export class RestService {
   }*/
   deconnect() {
     const router = this.router;
-    this.location.back();
-    /*return this.http
-      .post(
-        'http://10.1.1.103:5000/ws/disconnect', 'disconnect'
-      )
-      .subscribe(() => {
-      });*/
+    return this.http
+    .post(
+      'http://10.1.1.103:5000/ws/disconnect', 'disconnect'
+    )
+    .subscribe(() => {
+      this.location.back();
+      });
   }
 }
 

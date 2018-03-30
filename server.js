@@ -7,6 +7,7 @@ const cors = require("cors");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
+sockets = new Set();
 //style console
 const colors = require('colors');
 
@@ -153,6 +154,7 @@ server.listen(app.get("port"), function () {
 
 //SOCKET CONNECTION
 io.on("connection", function (socket) {
+  sockets.add(socket);
   console.log(`Socket ${socket.id} added`);
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
@@ -186,8 +188,8 @@ io.on("connection", function (socket) {
     socket.emit('disconnect','disconnect');
     res.json('disconnect');
   })
-  socket.on('disconnect', function (data) {
-    io.close();
+  socket.on('disconnect', function () {
+    sockets.delete(socket);
   console.log(`SERVER ${socket.id} +  'user disconnected`);
   });
   app.post('/ws/status', function (req, res) {
