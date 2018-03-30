@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit {
       case 'Print DATA OK':
       console.log(this.aboTransaction);
         this.receiptSuccess();
-        if (this.aboTransaction = 0 )  {
+        if (this.aboTransaction === 0 )  {
           this.onBack();
         } else {
           this.rest.dispenser();
