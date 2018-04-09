@@ -56,6 +56,7 @@ app.post("/ws/heartbeat", function (req, res) {
 // API INVOICE
 app.post("/api/invoice", function (req, res) {
   const data = req.body;
+  const total = (data.AmountToPay/100);
   console.log('invoice :' + JSON.stringify(data));
   console.log('total :' + data.AmountToPay);
   console.log(typeof (data.AmountToPay));
@@ -77,13 +78,13 @@ app.post("/api/invoice", function (req, res) {
   });
   doc.moveDown();
   doc.fontSize(14).text("Transaction n° :" + data.TransactionNumber);
-  doc.fontSize(18).text("Prix TTC : " + ((data.AmountToPay)/100) + ',00€', {
+  doc.fontSize(18).text("Prix TTC : " + (total + ',00€', {
     align: 'center'
   });
   doc.moveDown();
-  doc.text("TVA 10.0%            : " + ((data.AmountToPay) / 10) + '€');
-  doc.text("Montant total HT   : " + ((data.AmountToPay) - ((data.AmountToPay) / 10)) + '€');
-  doc.text("Montant total TTC : " + (data.AmountToPay) + ',00€');
+  doc.text("TVA 10.0%            : " + (total / 10) + '€');
+  doc.text("Montant total HT   : " + (total - (total / 10)) + '€');
+  doc.text("Montant total TTC : " + total + ',00€');
   doc.moveDown();
   doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
   //doc.rect(doc.x, 155, 280, doc.y).stroke();
