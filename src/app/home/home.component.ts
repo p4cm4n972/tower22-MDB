@@ -195,8 +195,8 @@ export class HomeComponent implements OnInit {
             this.abo = 0;
           }
         } else {
-          this.rest.dataticket();
           this.receiptInfo();
+          setInterval(this.rest.dataticket(), 2000);
         }
         break;
       case 'Print DATA OK':
