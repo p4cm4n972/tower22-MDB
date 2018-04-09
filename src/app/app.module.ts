@@ -41,7 +41,7 @@ const appRoutes: Routes = [
       { enableTracing: true, useHash: true, onSameUrlNavigation: 'reload' }
     ),
     MDBBootstrapModules.forRoot(),
-    ToastModule.forRoot({preventDuplicates: true}),
+    ToastModule.forRoot({preventDuplicates: true, maxOpened: 1}),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
