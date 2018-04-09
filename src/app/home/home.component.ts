@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
   // ALERT: IMPRESSION RECU
   receiptSuccess() {
     const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
-    this.toast.info('Merci de récuperer vos tickets', 'MERCI ET A BIENTOT', options);
+    this.toast.success('Merci de récuperer vos tickets', 'MERCI ET A BIENTOT', options);
   }
   // ALERT: INCIDENT PAIEMENT
   incident() {
