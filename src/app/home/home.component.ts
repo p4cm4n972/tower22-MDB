@@ -221,7 +221,7 @@ export class HomeComponent implements OnInit {
         this.trackerIncident = 0;
         this.CBModal.hide();
         this.contentModal.hide();
-        this.onBack();
+        this.onBackValid();
         break;
     }
   }
