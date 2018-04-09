@@ -63,7 +63,7 @@ app.post("/api/invoice", function (req, res) {
   doc = new PDFDocument({
     size: [300, 600]
   });
-  doc.image('logo.png', 20, 15, 250);
+  doc.image('logo.png', 80, 50, 250);
   doc.moveDown();
   doc.text('7, rue d\'Alembert', 20, 100);
   doc.text('ZAC de la Noue Rousseau');
@@ -83,8 +83,8 @@ app.post("/api/invoice", function (req, res) {
   });
   doc.moveDown();
   doc.text("TVA 10.0%            : " + (total / 10) + '€');
-  doc.text("Montant total HT   : " + (total - (total / 10)) + '€');
-  doc.text("Montant total TTC : " + total + ',00€');
+  doc.text("Mnt total HT   : " + (total - (total / 10)) + '€');
+  doc.text("Mnt total TTC : " + total + ',00€');
   doc.moveDown();
   doc.font('UPC-A.ttf').fontSize(80).text(data.TransactionNumber, 50, 500);
   //doc.rect(doc.x, 155, 280, doc.y).stroke();
