@@ -196,7 +196,8 @@ export class HomeComponent implements OnInit {
           }
         } else {
           this.receiptInfo();
-          setTimeout(this.rest.dataticket(), 2000);
+          setTimeout( () => {
+            this.rest.dataticket(); }, 2000);
         }
         break;
       case 'Print DATA OK':
