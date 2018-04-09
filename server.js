@@ -63,7 +63,7 @@ app.post("/api/invoice", function (req, res) {
   doc = new PDFDocument({
     size: [300, 600]
   });
-  doc.image('logo.png', 80, 50, 250);
+  doc.image('logo.png', 60, 40, 250);
   doc.moveDown();
   doc.text('7, rue d\'Alembert', 20, 100);
   doc.text('ZAC de la Noue Rousseau');
@@ -78,17 +78,17 @@ app.post("/api/invoice", function (req, res) {
   });
   doc.moveDown();
   doc.fontSize(14).text("Transaction n° :" + data.TransactionNumber);
-  doc.fontSize(18).text("Prix TTC : " + total + ',00€', {
+  doc.fontSize(16).text("Prix TTC : " + total + ',00€', {
     align: 'center'
   });
   doc.moveDown();
   doc.text("TVA 10.0%            : " + (total / 10) + '€');
-  doc.text("Mnt total HT   : " + (total - (total / 10)) + '€');
-  doc.text("Mnt total TTC : " + total + ',00€');
+  doc.text("Montant total HT   : " + (total - (total / 10)) + '€');
+  doc.text("Montant total TTC : " + total + ',00€');
   doc.moveDown();
   doc.font('UPC-A.ttf').fontSize(80).text(data.TransactionNumber, 50, 500);
   //doc.rect(doc.x, 155, 280, doc.y).stroke();
-  doc.image('vision.png', 80, 530, 250);
+  doc.image('vision.png', 70, 530, 250);
   doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
   doc.end();
   request.post(
