@@ -77,7 +77,7 @@ app.post("/api/invoice", function (req, res) {
   });
   doc.moveDown();
   doc.fontSize(14).text("Transaction n° :" + data.TransactionNumber);
-  doc.fontSize(18).text("Prix TTC : " + data.AmountToPay + ',00€', {
+  doc.fontSize(18).text("Prix TTC : " + ((data.AmountToPay)/100) + ',00€', {
     align: 'center'
   });
   doc.moveDown();

@@ -160,7 +160,7 @@ export class HomeComponent implements OnInit {
     this.incidentModal.hide();
     this.CBModal.show();
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
-    this.rest.checkOut(TransactionNumber.toString(), (this.total).toString());
+    this.rest.checkOut(TransactionNumber.toString(), (this.total * 100).toString());
   }
   // WEB SOCKET EVENT LISTENER STATUS
   status(data) {
