@@ -86,7 +86,7 @@ app.post("/api/invoice", function (req, res) {
   doc.text("Montant total HT   : " + (total - (total / 10)) + '€');
   doc.text("Montant total TTC : " + total + ',00€');
   doc.moveDown();
-  doc.font('UPC-A.ttf').fontSize(100).text(data.TransactionNumber, 50, 500);
+  doc.font('UPC-A.ttf').fontSize(80).text(data.TransactionNumber, 50, 500);
   //doc.rect(doc.x, 155, 280, doc.y).stroke();
   doc.image('vision.png', 80, 530, 250);
   doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
