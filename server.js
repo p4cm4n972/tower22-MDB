@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
-
+const Uri = require('./server-config');
 sockets = new Set();
 //style console
 const colors = require('colors');
@@ -92,7 +92,7 @@ app.post("/api/invoice", function (req, res) {
   doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
   doc.end();
   request.post(
-    'http://10.1.1.144:9010/ws/payment', {
+    Uri.borneForPayment, {
       json: {
         "AmountToPay": (data.AmountToPay),
         "TransactionNumber": (data.TransactionNumber)
@@ -106,7 +106,7 @@ app.post("/api/dataticket", function (req, res) {
   const data = req.body;
   console.log('dataticket :' + JSON.stringify(data));
   request.post(
-    'http://10.1.1.144:9010/ws/dataticket', {
+    Uri.borneForDataticket, {
       json: dataq
     }
   )
@@ -118,7 +118,7 @@ app.post("/api/receipt", function (req, res) {
   const data = req.body;
   console.log('receipt :' + JSON.stringify(data));
   request.post(
-    'http://10.1.1.144:9010/ws/dataticket', {
+    Uri.borneForDataticket, {
       json: data
     }
   )
@@ -130,7 +130,7 @@ app.post("/api/dispenser", function( req, res) {
   const data = req.body;
   console.log('dispenser :' + JSON.stringify(data));
   request.post(
-    'http://10.1.1.144:9010/ws/dispenser', {
+    Uri.borneForDispenser, {
       json: data
     }
   )
