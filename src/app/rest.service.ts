@@ -17,7 +17,7 @@ export class RestService {
     console.log(tt);
     return this.http
       .post(
-        'http://10.1.1.103:5000/api/invoice',
+        Url.masterInvoice,
         {
           AmountToPay: tt,
           TransactionNumber: tn
@@ -30,7 +30,7 @@ export class RestService {
   // PRINT CB TICKET
   checkCB() {
       return this.http.post(
-      'http://10.1.1.103:5000/api/dataticket',
+      Url.masterDataticket,
       {
         'HostId': 'CIEME_01',
         'TicketType': 'CBTicket',
@@ -46,7 +46,7 @@ export class RestService {
     console.log('Print Ticket');
     return this.http
       .post(
-        'http://10.1.1.103:5000/api/receipt',
+        Url.masterReceipt,
         {
           'HostId': 'CIEME_01',
           'TicketType': 'AppTicket',
@@ -63,7 +63,7 @@ export class RestService {
     console.log('Dispenser');
     return this.http
       .post(
-        'http://10.1.1.103:5000/api/dispenser',
+        Url.masterDispenser,
       {
           'HostId': 'CIEME_01',
           'Cmd': 'Distribute'
@@ -86,7 +86,7 @@ export class RestService {
     const router = this.router;
     return this.http
     .post(
-      'http://10.1.1.103:5000/ws/disconnect', 'disconnect'
+      'http://10.1.111:5000/ws/disconnect', 'disconnect'
     )
     .subscribe(() => {
       this.location.back();

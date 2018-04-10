@@ -92,7 +92,7 @@ app.post("/api/invoice", function (req, res) {
   doc.pipe(fs.createWriteStream("/home/aplus/BorneProduit/Receipts/Receipt.pdf"));
   doc.end();
   request.post(
-    "http://10.1.1.128:9010/ws/payment", {
+    'http://10.1.1.144:9010/ws/payment', {
       json: {
         "AmountToPay": (data.AmountToPay),
         "TransactionNumber": (data.TransactionNumber)
@@ -106,7 +106,7 @@ app.post("/api/dataticket", function (req, res) {
   const data = req.body;
   console.log('dataticket :' + JSON.stringify(data));
   request.post(
-    "http://10.1.128:9010/ws/dataticket", {
+    'http://10.1.1.144:9010/ws/dataticket', {
       json: dataq
     }
   )
@@ -118,7 +118,7 @@ app.post("/api/receipt", function (req, res) {
   const data = req.body;
   console.log('receipt :' + JSON.stringify(data));
   request.post(
-    "http://10.1.1.128:9010/ws/dataticket", {
+    'http://10.1.1.144:9010/ws/dataticket', {
       json: data
     }
   )
@@ -130,7 +130,7 @@ app.post("/api/dispenser", function( req, res) {
   const data = req.body;
   console.log('dispenser :' + JSON.stringify(data));
   request.post(
-    "http://10.1.1.128:9010/ws/dispenser", {
+    'http://10.1.1.144:9010/ws/dispenser', {
       json: data
     }
   )
