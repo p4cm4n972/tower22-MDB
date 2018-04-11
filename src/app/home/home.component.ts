@@ -40,6 +40,8 @@ export class HomeComponent implements OnInit {
   public aboTransaction = 0;
   //
   public modal = 1;
+  //
+  public  nothing;
   // PASS
   @ViewChild('ticketsModal') public ticketsModal;
   @ViewChild('abosModal') public abosModal;
@@ -72,18 +74,23 @@ export class HomeComponent implements OnInit {
     const options = { positionClass: 'toast-top-center', progressBar: true, toastClass: 'toasty' };
     this.toast.error('INCIDENT PAIEMENT', 'TRANSACTION ANNULÉE', options);
   }
+
+  //
   ticket() {
     this.ticketsModal.show();
     this.modal = 0;
+    this.nothing = setTimeout(() => {
+      this.onBackValid();
+    }, 20000);
   }
   abonnement() {
     this.abosModal.show();
     this.modal = 0;
     this.aboTransaction = 1;
-
   }
   // AJOUT tickets
   addTickets(ticket): void {
+    clearTimeout(this.nothing);
     switch (ticket) {
       // ADULTE
       case 'adulte':
@@ -196,20 +203,21 @@ export class HomeComponent implements OnInit {
           }
         } else {
           this.receiptInfo();
-          setTimeout( () => {
-            this.rest.dataticket(); }, 5000);
+          setTimeout(() => {
+            this.rest.dataticket();
+          }, 5000);
         }
         break;
       case 'Print DATA OK':
-      console.log(this.aboTransaction);
+        console.log(this.aboTransaction);
         this.receiptSuccess();
-        if (this.aboTransaction === 0 )  {
+        if (this.aboTransaction === 0) {
           this.onBack();
         } else {
           this.rest.dispenser();
         }
         break;
-        case 'Dispenser OK':
+      case 'Dispenser OK':
         this.dispenserModal.show();
         this.aboTransaction = 0;
         setTimeout(() => {

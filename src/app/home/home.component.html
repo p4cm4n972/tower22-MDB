@@ -130,9 +130,9 @@
                           <!--Pricing card-->
                           <div class="card pricing-card white-text">
                             <!--Price-->
-                            <div class="header elegant-color">
-                              <h4>VOTRE PANIER <div class="chip green" *ngIf="cart !== 0">{{cart}}</div></h4>
-                              <div class="chip yellow font-weight-bold mx-auto" *ngIf="total !== 0"><h2>{{total}},00 €</h2></div>
+                            <div class="header elegant-color pt-3">
+                              <h3>VOTRE PANIER <div class="chip green pt-1" style="font-size:1.5em; height:45px" *ngIf="cart !== 0">{{cart}}</div></h3>
+                              <div class="chip yellow font-weight-bold mx-auto" style="height: 55px"  *ngIf="total !== 0"><h2 style="font-size:3.5em;">{{total}},00 €</h2></div>
                             </div>
                             <!--Price-->
                   
@@ -142,23 +142,23 @@
                               <h1 class="my-4" *ngIf="cart === 0">Votre panier est vide </h1>
                               <ul *ngIf="cart !== 0" >
                                 <li *ngIf="tickets[0].qty !== 0">
-                                  <p class="mt-1" >
+                                  <p class="mt-1 " >
                                     Ticket(s): {{tickets[0].name}}</p>
-                                    <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="lessTickets('adulte')"><i class="fa fa-2x fa-minus"></i></button>
-                                    <div class="chip peach-gradient w-10"><p class="font-weight-bold" >{{tickets[0].qty}}</p></div>
-                                    <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='moreTickets("adulte")'><i class="fa fa-2x fa-plus"></i></button>
+                                    <button type="button" class="btn btn-lg btn-default btn-rounded waves-light" style="width: 210px" (click)="lessTickets('adulte')"><i class="fa fa-2x fa-minus"></i></button>
+                                    <div class="chip peach-gradient mx-auto text-center" style="width: 150px; height:100%; font-size:1.5em"><p class="font-weight-bold"style="font-size:1.5em;padding-top:10px" >{{tickets[0].qty}}</p></div>
+                                    <button type="button" class="btn btn-lg btn-secondary btn-rounded waves-light" style="width: 210px" (click)='moreTickets("adulte")'><i class="fa fa-2x fa-plus"></i></button>
                                 </li>
                                 <li *ngIf="tickets[1].qty !== 0">
                                     <p class="mt-1" >Ticket(s): {{tickets[1].name}}</p>
-                                    <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="lessTickets('enfant')"><i class="fa fa-2x fa-minus"></i></button>
-                                    <div class="chip aqua-gradient w-10"><p class="font-weight-bold" >{{tickets[1].qty}}</p></div>
-                                    <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='moreTickets("enfant")'><i class="fa fa-2x fa-plus"></i></button>
+                                    <button type="button" class="btn btn-lg btn-default btn-rounded  waves-light" style="width: 210px" (click)="lessTickets('enfant')"><i class="fa fa-2x fa-minus"></i></button>
+                                    <div class="chip aqua-gradient mx-auto text-center" style="width: 150px; height:100%; font-size:1.5em"><p class="font-weight-bold" style="font-size:1.5em;padding-top:10px" >{{tickets[1].qty}}</p></div>
+                                    <button type="button" class="btn btn-lg btn-secondary btn-rounded waves-light" style="width: 210px" (click)='moreTickets("enfant")'><i class="fa fa-2x fa-plus"></i></button>
                                 </li>
                                 <li *ngIf="tickets[2].qty !== 0">
                                     <p class="mt-1" >Ticket(s): {{tickets[2].name}}</p>
-                                    <button type="button" class="btn btn-lg btn-default w-25 waves-light" (click)="lessTickets('groupe')"><i class="fa fa-2x fa-minus"></i></button>
-                                    <div class="chip purple-gradient w-10"><p class="font-weight-bold" >{{tickets[2].qty}}</p></div>
-                                    <button type="button" class="btn btn-lg btn-secondary w-25 waves-light" (click)='moreTickets("groupe")'><i class="fa fa-2x fa-plus"></i></button>
+                                    <button type="button" class="btn btn-lg btn-default btn-rounded waves-light" style="width: 210px" (click)="lessTickets('groupe')"><i class="fa fa-2x fa-minus"></i></button>
+                                    <div class="chip purple-gradient mx-auto text-center" style="width: 150px; height:100%; font-size:1.5em"><p class="font-weight-bold" style="font-size:1.5em;padding-top:10px">{{tickets[2].qty}}</p></div>
+                                    <button type="button" class="btn btn-lg btn-secondary btn-rounded waves-light" style="width: 210px" (click)='moreTickets("groupe")'><i class="fa fa-2x fa-plus"></i></button>
                                 </li>
                               </ul>
                   
@@ -404,7 +404,7 @@
           </div>
       </div>
   </div>
-  <div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div mdbModal #style="mdb-modal" [config]="{ ignoreBackdropClick: true }" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">

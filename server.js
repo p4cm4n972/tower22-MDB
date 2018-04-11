@@ -53,6 +53,10 @@ app.post("/ws/heartbeat", function (req, res) {
   });
   res.json("heartbeat: " + req.body.Mode);
 });
+// STATUS
+app.post('/ws/status', function (req, res) {
+  console.log("BORNE MODE: ".bgMagenta + req.body.Mode);
+})
 // API INVOICE
 app.post("/api/invoice", function (req, res) {
   const data = req.body;
@@ -183,7 +187,5 @@ io.on("connection", function (socket) {
     sockets.delete(socket);
   console.log(`SERVER ${socket.id} +  'user disconnected`);
   });
-  app.post('/ws/status', function (req, res) {
-    console.log("BORNE MODE: ".bgMagenta + req.body.Mode);
-  })
+  
 });
