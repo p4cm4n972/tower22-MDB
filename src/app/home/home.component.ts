@@ -167,7 +167,9 @@ export class HomeComponent implements OnInit {
     this.incidentModal.hide();
     this.CBModal.show();
     const TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
-    this.rest.checkOut(TransactionNumber.toString(), (this.total * 100).toString());
+    this.rest.checkOut(TransactionNumber.toString(), (this.total * 100).toString()).subscribe((data) => {
+      console.log(data);
+    });
   }
   // WEB SOCKET EVENT LISTENER STATUS
   status(data) {
@@ -204,7 +206,9 @@ export class HomeComponent implements OnInit {
         } else {
           this.receiptInfo();
           setTimeout(() => {
-            this.rest.dataticket();
+            this.rest.dataticket().subscribe((data) => {
+              console.log(data);
+            });;
           }, 5000);
         }
         break;
@@ -214,7 +218,9 @@ export class HomeComponent implements OnInit {
         if (this.aboTransaction === 0) {
           this.onBack();
         } else {
-          this.rest.dispenser();
+          this.rest.dispenser().subscribe((data) => {
+            console.log(data);
+          });;
         }
         break;
       case 'Dispenser OK':
@@ -363,13 +369,17 @@ export class HomeComponent implements OnInit {
             this.abo = 0;
           }
         } else {
-          this.rest.dataticket();
+          this.rest.dataticket().subscribe((data) => {
+            console.log(data);
+          });;
           this.receiptInfo();
         }
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        this.rest.dispenser();
+        this.rest.dispenser().subscribe((data) => {
+          console.log(data);
+        });;
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
@@ -379,7 +389,9 @@ export class HomeComponent implements OnInit {
         this.CBModal.hide();
         this.contentModal.hide();
         this.incident();
-        this.rest.deconnect();
+        this.rest.deconnect().subscribe((data) => {
+          console.log(data);
+        });;
         break;
     }
   }

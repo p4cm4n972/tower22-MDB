@@ -22,10 +22,7 @@ export class RestService {
           AmountToPay: tt,
           TransactionNumber: tn
         }
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
+      );
   }
   // PRINT CB TICKET
   checkCB() {
@@ -36,10 +33,7 @@ export class RestService {
         'TicketType': 'CBTicket',
         'TicketURL': 'BorneProduit/DataTicket/dataticket.pdf'
       }
-    )
-      .subscribe((data) => {
-        console.log(data);
-      });
+    );
   }
   // PRINT RECEIPT
   dataticket() {
@@ -52,11 +46,7 @@ export class RestService {
           'TicketType': 'AppTicket',
           'TicketURL': 'BorneProduit/Receipts/Receipt.pdf'
         }
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
-
+      );
   }
   // DISPENSER
   dispenser() {
@@ -68,10 +58,7 @@ export class RestService {
           'HostId': 'CIEME_01',
           'Cmd': 'Distribute'
         }
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
+      );
   }
   // Product Mode ( in service, dep, out of service )
   /*heartbeat() {
@@ -87,10 +74,7 @@ export class RestService {
     return this.http
     .post(
       'http://10.1.111:5000/ws/disconnect', 'disconnect'
-    )
-    .subscribe(() => {
-      this.location.back();
-      });
+    );
   }
 }
 

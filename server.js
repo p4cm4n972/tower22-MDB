@@ -60,7 +60,7 @@ app.post('/ws/status', function (req, res) {
 // API INVOICE
 app.post("/api/invoice", function (req, res) {
   const data = req.body;
-  const total = (data.AmountToPay/100);
+  const total = (data.AmountToPay / 100);
   console.log('invoice :' + JSON.stringify(data));
   console.log('total :' + data.AmountToPay);
   console.log(typeof (data.AmountToPay));
@@ -101,8 +101,13 @@ app.post("/api/invoice", function (req, res) {
         "AmountToPay": (data.AmountToPay),
         "TransactionNumber": (data.TransactionNumber)
       }
+    },
+    function (error, response, body) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+      console.log('body:', body);
     }
-  )
+  );
   res.json('invoice :' + req.body);
 })
 // API CHECK CB
@@ -112,11 +117,16 @@ app.post("/api/dataticket", function (req, res) {
   request.post(
     Uri.borneForDataticket, {
       json: dataq
+    },
+    function (error, response, body) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+      console.log('body:', body);
     }
-  )
+  );
   res.json('datatticket :' + req.body);
-  
-})
+
+});
 // API RECEIPT
 app.post("/api/receipt", function (req, res) {
   const data = req.body;
@@ -124,23 +134,33 @@ app.post("/api/receipt", function (req, res) {
   request.post(
     Uri.borneForDataticket, {
       json: data
+    },
+    function (error, response, body) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+      console.log('body:', body);
     }
-  )
+  );
   res.json('receipt :' + req.body);
-  
-})
+
+});
 // API DISPENSER
-app.post("/api/dispenser", function( req, res) {
+app.post("/api/dispenser", function (req, res) {
   const data = req.body;
   console.log('dispenser :' + JSON.stringify(data));
   request.post(
     Uri.borneForDispenser, {
       json: data
+    },
+    function (error, response, body) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+      console.log('body:', body);
     }
-  )
+  );
   res.json('dispenser :' + req.body);
-  
-})
+
+});
 //EXPRESS SERVER
 app.set("port", process.env.PORT || 5000);
 server.listen(app.get("port"), function () {
@@ -180,12 +200,12 @@ io.on("connection", function (socket) {
     res.json(req.body.Acknowledge);
   });
   app.post('/ws/disconnect', function (req, res) {
-    io.emit('disconnect','disconnect');
+    io.emit('disconnect', 'disconnect');
     res.json('disconnect');
   })
   socket.on('disconnect', function () {
     sockets.delete(socket);
-  console.log(`SERVER ${socket.id} +  'user disconnected`);
+    console.log(`SERVER ${socket.id} +  'user disconnected`);
   });
-  
+
 });
