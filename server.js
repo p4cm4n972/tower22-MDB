@@ -54,9 +54,9 @@ app.post("/ws/heartbeat", function (req, res) {
   res.json("heartbeat: " + req.body.Mode);
 });
 // STATUS
-app.post('/ws/status', function (req, res) {
+app.post("/ws/status", function (req, res) {
   console.log("BORNE MODE: ".bgMagenta + req.body.Mode);
-})
+});
 // API INVOICE
 app.post("/api/invoice", function (req, res) {
   const data = req.body;

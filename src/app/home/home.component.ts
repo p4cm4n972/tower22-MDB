@@ -369,17 +369,17 @@ export class HomeComponent implements OnInit {
             this.abo = 0;
           }
         } else {
-          this.rest.dataticket().subscribe((data) => {
-            console.log(data);
-          });;
+          this.rest.dataticket().subscribe((done) => {
+            console.log(done);
+          });
           this.receiptInfo();
         }
         break;
       case 'Print DATA OK':
         this.receiptSuccess();
-        this.rest.dispenser().subscribe((data) => {
-          console.log(data);
-        });;
+        this.rest.dispenser().subscribe((done) => {
+          console.log(done);
+        });
         break;
       case 'Dispenser OK':
         this.dispenserModal.show();
@@ -389,9 +389,9 @@ export class HomeComponent implements OnInit {
         this.CBModal.hide();
         this.contentModal.hide();
         this.incident();
-        this.rest.deconnect().subscribe((data) => {
-          console.log(data);
-        });;
+        this.rest.deconnect().subscribe((done) => {
+          console.log(done);
+        });
         break;
     }
   }
