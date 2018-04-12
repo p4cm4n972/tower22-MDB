@@ -4,13 +4,13 @@ Application pour borne de paiement.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.2.
 
 ## FRONT
-Angular.io
+Angular.io <br>
 Material Design for Bootstrap
 
 
 
 ## BACK
-Express Node js
+Express Node js<br>
 Socket.io
 
 ## Captures
