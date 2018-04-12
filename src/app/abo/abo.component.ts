@@ -171,7 +171,7 @@ export class AboComponent implements OnInit, OnDestroy {
         this.CBModal.hide();
         this.contentModal.hide();
         this.incident();
-        this.rest.deconnect();
+        this.onBackValid();
         break;
     }
   }
