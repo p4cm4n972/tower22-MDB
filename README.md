@@ -1,5 +1,5 @@
 # Tower22Mdb
-Application pour borne de paiement.
+Application pour bornes et kiosques tactiles multimédia .
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.2.
 
