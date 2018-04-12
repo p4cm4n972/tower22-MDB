@@ -206,9 +206,9 @@ export class HomeComponent implements OnInit {
         } else {
           this.receiptInfo();
           setTimeout(() => {
-            this.rest.dataticket().subscribe((data) => {
-              console.log(data);
-            });;
+            this.rest.dataticket().subscribe((done) => {
+              console.log(done);
+            });
           }, 5000);
         }
         break;
@@ -218,9 +218,9 @@ export class HomeComponent implements OnInit {
         if (this.aboTransaction === 0) {
           this.onBack();
         } else {
-          this.rest.dispenser().subscribe((data) => {
-            console.log(data);
-          });;
+          this.rest.dispenser().subscribe((done) => {
+            console.log(done);
+          });
         }
         break;
       case 'Dispenser OK':
