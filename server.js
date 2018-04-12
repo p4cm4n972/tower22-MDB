@@ -67,7 +67,7 @@ app.post("/api/invoice", function (req, res) {
   doc = new PDFDocument({
     size: [300, 600]
   });
-  doc.image('logo.png', 60, 40, 250);
+  doc.image('logo.png', 70, 40, 250);
   doc.moveDown();
   doc.text('7, rue d\'Alembert', 20, 100);
   doc.text('ZAC de la Noue Rousseau');
@@ -109,7 +109,7 @@ app.post("/api/invoice", function (req, res) {
     }
   );
   res.json('invoice :' + req.body);
-})
+});
 // API CHECK CB
 app.post("/api/dataticket", function (req, res) {
   const data = req.body;
