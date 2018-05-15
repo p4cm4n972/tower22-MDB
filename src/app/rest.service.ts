@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 // import * as socketIo from 'socket.io-client';
 import { Socket } from './ws';
 import { Url } from '../app/app-config';
 import { Location } from '@angular/common';
+
+const header = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET',
+  'Access-Control-Allow-Origin': '*'
+};
+const httpOptions =  new HttpHeaders(header);
 
 
 @Injectable()
@@ -21,7 +30,7 @@ export class RestService {
         {
           AmountToPay: tt,
           TransactionNumber: tn
-        }
+        }, {headers : httpOptions}
       );
   }
   // PRINT CB TICKET
