@@ -97,27 +97,27 @@ export class HomeComponent implements OnInit {
         this.tickets[0].qty++;
         ++this.cart;
         this.total =
-          +this.tickets[0].qty * 10 +
-          +this.tickets[1].qty * 7 +
-          +this.tickets[2].qty * 5;
+          +this.tickets[0].qty * 1 +
+          +this.tickets[1].qty * 1 +
+          +this.tickets[2].qty * 1;
         break;
       // ENFANT
       case 'enfant':
         this.tickets[1].qty++;
         ++this.cart;
         this.total =
-          +this.tickets[0].qty * 10 +
-          +this.tickets[1].qty * 7 +
-          +this.tickets[2].qty * 5;
+          +this.tickets[0].qty * 1 +
+          +this.tickets[1].qty * 1 +
+          +this.tickets[2].qty * 1;
         break;
       // GROUPE
       case 'groupe':
         this.tickets[2].qty++;
         ++this.cart;
         this.total =
-          +this.tickets[0].qty * 10 +
-          +this.tickets[1].qty * 7 +
-          +this.tickets[2].qty * 5;
+          +this.tickets[0].qty * 1 +
+          +this.tickets[1].qty * 1 +
+          +this.tickets[2].qty * 1;
         break;
     }
   }
@@ -126,17 +126,17 @@ export class HomeComponent implements OnInit {
     switch (items) {
       case 'adulte':
         this.cart = this.cart - 1;
-        this.total = this.total - 10;
+        this.total = this.total - 1;
         this.tickets[0].qty = this.tickets[0].qty - 1;
         break;
       case 'enfant':
         this.cart = this.cart - 1;
-        this.total = this.total - 7;
+        this.total = this.total - 1;
         this.tickets[1].qty = this.tickets[1].qty - 1;
         break;
       case 'groupe':
         this.cart = this.cart - 1;
-        this.total = this.total - 5;
+        this.total = this.total - 1;
         this.tickets[2].qty = this.tickets[2].qty - 1;
         break;
     }
@@ -146,17 +146,17 @@ export class HomeComponent implements OnInit {
     switch (items) {
       case 'adulte':
         this.cart = this.cart + 1;
-        this.total = this.total + 10;
+        this.total = this.total + 1;
         this.tickets[0].qty = this.tickets[0].qty + 1;
         break;
       case 'enfant':
         this.cart = this.cart + 1;
-        this.total = this.total + 7;
+        this.total = this.total + 1;
         this.tickets[1].qty = this.tickets[1].qty + 1;
         break;
       case 'groupe':
         this.cart = this.cart + 1;
-        this.total = this.total + 5;
+        this.total = this.total + 1;
         this.tickets[2].qty = this.tickets[2].qty + 1;
         break;
     }
